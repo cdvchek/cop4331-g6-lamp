@@ -77,7 +77,7 @@ function returnWithInfo( $firstName, $lastName, $id )
 {
 	$response = [
 		"status" => "success",
-		"message" => "successfully logged in",
+		"message" => "successfully registered",
 		"data" => [
 			"id" => $id,
 			"firstName" => $firstName,
