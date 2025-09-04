@@ -6,3 +6,4 @@ apache.conf
 supervisord.log
 supervisord.pid
 /mysql/*
+/vendor/
