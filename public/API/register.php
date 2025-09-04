@@ -1,9 +1,6 @@
 <?php
-ini_set("display_errors", 1);
-error_reporting(E_ALL);
 
-header('Content-Type: application/json');
-
+include('./util.php');
 require_once __DIR__ . '/db.php';
 
 // Getting the JSON input
@@ -67,26 +64,26 @@ $conn->close();
 
 
 // Helper functions
-function getRequestInfo()
+function returnWithError( $err )
 {
-    return json_decode(file_get_contents('php://input'), true);
+	$response = [
+		"status" => "error",
+		"message" => $err,
+    ];
+	sendResultInfoAsJson( json_encode($response) );
 }
 
-function sendResultInfoAsJson($obj)
+function returnWithInfo( $firstName, $lastName, $id )
 {
-    header('Content-type: application/json');
-    echo $obj;
-}
-
-function returnWithError($err)
-{
-    $retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
-    sendResultInfoAsJson($retValue);
-}
-
-function returnWithInfo($firstName, $lastName, $id)
-{
-    $retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
-    sendResultInfoAsJson($retValue);
+	$response = [
+		"status" => "success",
+		"message" => "successfully logged in",
+		"data" => [
+			"id" => $id,
+			"firstName" => $firstName,
+			"lastName" => $lastName
+		]
+    ];
+	sendResultInfoAsJson( json_encode($response) );
 }
 ?>

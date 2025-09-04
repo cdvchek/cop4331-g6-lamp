@@ -7,3 +7,5 @@ supervisord.log
 supervisord.pid
 /mysql/*
 /vendor/
+.vscode/
+xdebug.ini

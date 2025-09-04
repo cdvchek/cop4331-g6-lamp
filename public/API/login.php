@@ -1,58 +1,59 @@
 <?php
+include('./util.php');
+require_once __DIR__ . '/db.php';
+$inData = getRequestInfo();
 
-    require_once __DIR__ . '/db.php';
-	$inData = getRequestInfo();
-	
-	$id = 0;
-	$firstName = "";
-	$lastName = "";
+$id = 0;
+$firstName = "";
+$lastName = "";
 
-	$conn = get_db_connection();
-	if( $conn->connect_error )
-	{
-		returnWithError( $conn->connect_error );
-	}
-	else
-	{
-		$stmt = $conn->prepare("SELECT ID, FName,LName FROM Users WHERE Username=? AND Password =?");
-		$stmt->bind_param("ss", $inData["login"], $inData["password"]);
-		$stmt->execute();
-		$result = $stmt->get_result();
+$conn = get_db_connection();
+if( $conn->connect_error )
+{
+	returnWithError( $conn->connect_error );
+	exit();
+}
 
-		if( $row = $result->fetch_assoc()  )
-		{
-			returnWithInfo( $row['FName'], $row['LName'], $row['ID'] );
-		}
-		else
-		{
-			returnWithError("No Records Found");
-		}
+$stmt = $conn->prepare('SELECT Password, FName, LName, ID FROM Users WHERE Username = ?');
+$stmt->bind_param('s', $inData['login']);
+$stmt->execute();
+$stmt->bind_result($storedHash, $firstName, $lastName, $id);
 
-		$stmt->close();
-		$conn->close();
-	}
-	
-	function getRequestInfo()
-	{
-		return json_decode(file_get_contents('php://input'), true);
-	}
+if ($stmt->fetch() && password_verify($inData['password'], $storedHash)) 
+{
+	returnWithInfo( $firstName, $lastName, $id);
+}
+else
+{
+	returnWithError("Incorrect Username or Password");
+}
 
-	function sendResultInfoAsJson( $obj )
-	{
-		header('Content-type: application/json');
-		echo $obj;
-	}
-	
-	function returnWithError( $err )
-	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
-		sendResultInfoAsJson( $retValue );
-	}
-	
-	function returnWithInfo( $firstName, $lastName, $id )
-	{
-		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
-		sendResultInfoAsJson( $retValue );
-	}
-	
+$stmt->close();
+$conn->close();
+
+
+
+function returnWithError( $err )
+{
+	$response = [
+		"status" => "error",
+		"message" => $err,
+    ];
+	sendResultInfoAsJson( json_encode($response) );
+}
+
+function returnWithInfo( $firstName, $lastName, $id )
+{
+	$response = [
+		"status" => "success",
+		"message" => "successfully logged in",
+		"data" => [
+			"id" => $id,
+			"firstName" => $firstName,
+			"lastName" => $lastName
+		]
+    ];
+	sendResultInfoAsJson( json_encode($response) );
+}
+
 ?>
