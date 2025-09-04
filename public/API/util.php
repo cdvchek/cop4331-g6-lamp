@@ -5,6 +5,7 @@
     {
         header('Content-type: application/json');
         echo $obj;
+        exit(); // Ensure the script stops executing after sending the response
     }
 
 	function getRequestInfo()

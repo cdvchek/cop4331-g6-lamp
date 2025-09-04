@@ -1,5 +1,4 @@
 <?php
-
 // Includes the utility functions for JSON handling and DB connection
 include('./util.php');
 require_once __DIR__ . '/db.php';
