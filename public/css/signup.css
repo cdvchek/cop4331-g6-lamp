@@ -11,6 +11,7 @@ body {
 #signup-form {
     width: 500px;
     height: calc(85vh - 75px);
+    max-height: 675px;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -40,6 +41,7 @@ body {
     border: none;
     outline: none;
     padding-left: 8px;
+    height: 100%;
 }
 
 #remember-me-wrapper {
