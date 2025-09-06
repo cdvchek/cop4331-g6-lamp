@@ -35,4 +35,4 @@ const doLogin = (e) => {
     login(username_login_el.value.trim(), password_login_el.value);
 }
 
-login_btn_el.addEventListener('click', doLogin);
+if (login_btn_el) login_btn_el.addEventListener('click', doLogin);
