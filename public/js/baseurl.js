@@ -1,1 +1,1 @@
-const base_url = "www.myaedojourney.xyz";
+const base_url = "http://www.myaedojourney.xyz";
