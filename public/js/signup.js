@@ -4,7 +4,9 @@ const username_el = document.getElementById('username-input');
 const password_el = document.getElementById('password-input');
 const signup_btn_el = document.getElementById('signup-btn');
 
-const signup = async () => {
+const signup = async (e) => {
+    e.preventDefault();
+    
     const payload = {
         fistName: f_name_el.value.trim(),
         lastName: l_name_el.value.trim(),

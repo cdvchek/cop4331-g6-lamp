@@ -30,7 +30,8 @@ const login = async (username, password) => {
     }
 }
 
-const doLogin = () => {
+const doLogin = (e) => {
+    e.preventDefault();
     login(username_login_el.value.trim(), password_login_el.value);
 }
 
