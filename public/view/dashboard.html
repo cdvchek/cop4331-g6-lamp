@@ -15,12 +15,26 @@
             <span></span>
             <span></span>
         </label>
-
-        <ul class="menu">
-            <li><a href="#">Contacts</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Logout</a></li>
-        </ul>
+        <div class="menu">
+            <div class="menu-view" id="menu-main">
+                <button class="menu-btn" data-view="profile">Profile</button>
+                <button class="menu-btn">Settings</button>
+                <button class="menu-btn">Logout</button>
+            </div>
+            <div class="menu-view" id="menu-profile">
+                <h3 class="menu-title">Edit Profile</h3>
+                <form>
+                <label>First Name <input type="text" name="firstName"></label>
+                <label>Last Name <input type="text" name="lastName"></label>
+                <label>Username <input type="text" name="username"></label>
+                <label>Password <input type="password" name="password"></label>
+                <div class="menu-actions">
+                    <button class="menu-btn" type="button" data-view="main">Back</button>
+                    <button type="submit">Save</button>
+                </div>
+                </form>
+            </div>
+        </div>
     </nav>
     <div id="content-wrapper">
         <div id="navigator">
@@ -104,5 +118,6 @@
         </div>
         <div id="viewport"></div>
     </div>
+    <script src="../js/dashboard-menu-navigation.js"></script>
 </body>
 </html>
