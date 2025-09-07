@@ -2,7 +2,9 @@ const username_login_el = document.getElementById('username-input');
 const password_login_el = document.getElementById('password-input');
 const login_btn_el = document.getElementById('login-btn');
 
-const login = async () => {
+const login = async (e) => {
+    e.preventDefault();
+    
     const payload = {
         login: username_login_el.value.trim(),
         password: password_login_el.value
