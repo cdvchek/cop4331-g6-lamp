@@ -2,10 +2,10 @@ const username_login_el = document.getElementById('username-input');
 const password_login_el = document.getElementById('password-input');
 const login_btn_el = document.getElementById('login-btn');
 
-const login = async (username, password) => {
+const login = async () => {
     const payload = {
-        login: username,
-        password: password
+        login: username_login_el.value.trim(),
+        password: password_login_el.value
     };
 
     const res = await fetch(base_url + "/API/login.php", {
@@ -24,15 +24,10 @@ const login = async (username, password) => {
         localStorage.setItem("firstName", data.firstName);
         localStorage.setItem("lastName", data.lastName);
 
-        window.location.href = base_url + "/view/dashboard.html"
+        window.location.href = base_url + "/view/dashboard.html";
     } else {
         // TODO: error handling
     }
 }
 
-const doLogin = (e) => {
-    e.preventDefault();
-    login(username_login_el.value.trim(), password_login_el.value);
-}
-
-if (login_btn_el) login_btn_el.addEventListener('click', doLogin);
+login_btn_el.addEventListener('click', login);

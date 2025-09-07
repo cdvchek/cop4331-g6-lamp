@@ -6,12 +6,12 @@ const signup_btn_el = document.getElementById('signup-btn');
 
 const signup = async (e) => {
     e.preventDefault();
-    
+
     const payload = {
-        fistName: f_name_el.value.trim(),
+        firstName: f_name_el.value.trim(),
         lastName: l_name_el.value.trim(),
         username: username_el.value.trim(),
-        password_el: password_el.value
+        password: password_el.value
     };
 
     const res = await fetch(base_url + "/API/register.php", {
@@ -26,12 +26,14 @@ const signup = async (e) => {
 
     const data = await res.json();
     if (data.status == "success") {
-        console.log(data);
+        localStorage.setItem("userId", data.id);
+        localStorage.setItem("firstName", payload.firstName);
+        localStorage.setItem("lastName", payload.lastName);
+
+        window.location.href = base_url + "/view/dashboard.html";
     } else {
         // TODO: error handling
     }
-
-    login(username_el.value.trim(), password_el.value);
 }
 
 signup_btn_el.addEventListener('click', signup);
