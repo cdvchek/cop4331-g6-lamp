@@ -7,56 +7,80 @@
     <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
-    <nav id="nav-bar">
-        <h1 id="title">My Contact Manager</h1>
-        <input type="checkbox" id="menu-toggle" />
-        <label for="menu-toggle" class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
-        <div class="menu">
-            <div class="menu-view" id="menu-main">
-                <button class="menu-btn" data-view="profile">Profile</button>
-                <button class="menu-btn">Settings</button>
-                <button id="logout-btn" class="menu-btn">Logout</button>
+    <div id="body">
+        <div id="contact-selector">
+            <div id="title-wrapper">
+                <h1 id="title">My Contact Manager</h1>
             </div>
-            <div class="menu-view" id="menu-profile">
-                <h3 class="menu-title">Edit Profile</h3>
-                <form>
-                <label>First Name <input type="text" name="firstName"></label>
-                <label>Last Name <input type="text" name="lastName"></label>
-                <label>Username <input type="text" name="username"></label>
-                <label>Password <input type="password" name="password"></label>
-                <div class="menu-actions">
-                    <button class="menu-btn" type="button" data-view="main">Back</button>
-                    <button type="submit">Save</button>
+            <div id="search-wrapper">
+                <div id="search-bar">
+                    <img id="search-icon" src="../images/icons/search.svg" alt="">
+                    <input id="search-input" type="text" placeholder="Search contacts...">
+                    <button id="add-contact">+</button>
                 </div>
-                </form>
+            </div>
+            <ul id="contact-list">
+                <li class="contact-entry">
+                    <div class="contact-icon">
+                        <span class="contact-icon-letter">C</span>
+                    </div>
+                    <span class="contact-name">Carsdan Dvorachek</span>
+                </li>
+                <li class="contact-entry">
+                    <div class="contact-icon">
+                        <span class="contact-icon-letter">J</span>
+                    </div>
+                    <span class="contact-name">Jonathan Smith</span>
+                </li>
+            </ul>
+        </div>
+        <div id="contact-viewport">
+            <div id="image-name-div">
+                <div id="contact-icon">
+                    <span id="contact-icon-letter">C</span>
+                </div>
+                <div id="name-div">
+                    <span class="name" id="first-name">Carsdan</span>
+                    <span class="name" id="last-name">Dvorachek</span>
+                </div>
+            </div>
+            <div id="email-div" class="contact-info-div">
+                <svg id="email-icon" class="contact-info-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+                    <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+                        <path d="M 69.309 28.917 c -0.01 -0.062 -0.022 -0.122 -0.037 -0.181 c -0.016 -0.065 -0.036 -0.128 -0.059 -0.191 c -0.023 -0.062 -0.047 -0.121 -0.076 -0.18 c -0.027 -0.057 -0.057 -0.112 -0.09 -0.166 c -0.037 -0.06 -0.076 -0.118 -0.119 -0.174 c -0.02 -0.027 -0.034 -0.057 -0.056 -0.083 c -0.018 -0.022 -0.041 -0.037 -0.06 -0.058 c -0.047 -0.052 -0.097 -0.099 -0.149 -0.145 c -0.048 -0.042 -0.095 -0.083 -0.146 -0.12 c -0.053 -0.039 -0.108 -0.073 -0.165 -0.106 c -0.055 -0.032 -0.109 -0.064 -0.166 -0.09 c -0.061 -0.028 -0.123 -0.051 -0.187 -0.073 c -0.058 -0.02 -0.116 -0.04 -0.176 -0.055 c -0.065 -0.016 -0.13 -0.027 -0.197 -0.036 c -0.065 -0.009 -0.129 -0.017 -0.195 -0.02 c -0.03 -0.001 -0.059 -0.009 -0.089 -0.009 H 22.659 c -0.029 0 -0.056 0.007 -0.084 0.008 c -0.069 0.003 -0.138 0.011 -0.206 0.021 c -0.063 0.009 -0.125 0.019 -0.186 0.034 c -0.063 0.015 -0.124 0.036 -0.186 0.058 c -0.061 0.022 -0.121 0.043 -0.179 0.07 c -0.059 0.027 -0.115 0.06 -0.171 0.093 c -0.056 0.033 -0.11 0.066 -0.162 0.104 c -0.051 0.037 -0.099 0.078 -0.146 0.121 c -0.052 0.046 -0.102 0.094 -0.15 0.146 c -0.019 0.021 -0.042 0.036 -0.06 0.058 c -0.022 0.026 -0.036 0.056 -0.056 0.082 c -0.043 0.056 -0.082 0.114 -0.119 0.175 c -0.033 0.054 -0.062 0.109 -0.089 0.165 c -0.029 0.059 -0.054 0.12 -0.077 0.182 c -0.023 0.063 -0.042 0.125 -0.059 0.189 c -0.015 0.06 -0.028 0.121 -0.037 0.183 c -0.011 0.071 -0.018 0.141 -0.021 0.212 c -0.002 0.033 -0.01 0.065 -0.01 0.098 v 31.543 c 0 1.104 0.896 2 2 2 h 44.682 c 1.104 0 2 -0.896 2 -2 V 29.228 c 0 -0.034 -0.008 -0.065 -0.01 -0.098 C 69.327 29.058 69.321 28.988 69.309 28.917 z M 61.852 31.228 L 45 45.388 l -16.852 -14.16 H 61.852 z M 24.659 58.771 V 33.521 l 19.054 16.01 C 44.085 49.844 44.542 50 45 50 s 0.915 -0.156 1.286 -0.469 L 65.341 33.52 v 25.251 H 24.659 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: currentColor; fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
+                        <path d="M 45 0 C 20.187 0 0 20.187 0 45 c 0 24.813 20.187 45 45 45 c 24.813 0 45 -20.187 45 -45 C 90 20.187 69.813 0 45 0 z M 45 86 C 22.393 86 4 67.607 4 45 S 22.393 4 45 4 s 41 18.393 41 41 S 67.607 86 45 86 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: currentColor; fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
+                    </g>
+                </svg>
+                <span id="email" class="contact-info-span">longestemaileversomething@email.com</span>
+            </div>
+            <div id="phone-div" class="contact-info-div">
+                <svg id="phone-icon" class="contact-info-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+                    <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+                        <path d="M 56.817 69.342 c -2.029 0 -4.131 -0.31 -6.242 -0.93 c -3.149 -0.923 -6.375 -2.541 -9.863 -4.946 c -2.776 -1.914 -5.378 -4.084 -7.734 -6.448 c -2.358 -2.351 -4.528 -4.952 -6.444 -7.729 c -2.403 -3.485 -4.022 -6.711 -4.947 -9.864 c -1.17 -3.989 -1.237 -7.942 -0.192 -11.435 c 0.944 -3.159 3.518 -6.968 7.663 -7.307 c 3.666 -0.306 6.56 2.263 8.414 4.217 c 1.826 1.924 4.194 4.898 3.678 8.488 c -0.323 2.25 -1.644 3.945 -3.225 5.411 L 51.2 52.075 c 1.466 -1.582 3.161 -2.902 5.411 -3.226 c 3.595 -0.516 6.563 1.852 8.488 3.678 c 1.954 1.854 4.518 4.743 4.218 8.413 c -0.339 4.146 -4.148 6.721 -7.308 7.665 C 60.366 69.097 58.62 69.342 56.817 69.342 z M 29.64 24.659 c -0.086 0 -0.171 0.003 -0.256 0.01 c -1.998 0.164 -3.527 2.361 -4.157 4.467 c -0.822 2.749 -0.753 5.917 0.198 9.162 c 0.804 2.737 2.243 5.589 4.402 8.718 c 1.777 2.576 3.789 4.989 5.979 7.172 c 2.189 2.197 4.603 4.209 7.177 5.984 c 3.131 2.159 5.982 3.6 8.718 4.401 c 3.246 0.952 6.414 1.022 9.162 0.199 c 2.106 -0.63 4.304 -2.16 4.468 -4.158 c 0.121 -1.491 -0.827 -3.139 -2.984 -5.186 c -2.1 -1.992 -3.738 -2.821 -5.167 -2.621 c -1.583 0.228 -2.938 1.768 -4.304 3.463 c -0.355 0.442 -0.882 0.712 -1.448 0.743 c -0.576 0.03 -1.12 -0.181 -1.521 -0.581 l -8.18 -8.156 c -0.001 -0.001 -0.003 -0.003 -0.004 -0.004 l -8.155 -8.18 c -0.4 -0.402 -0.611 -0.955 -0.581 -1.521 c 0.031 -0.566 0.301 -1.093 0.743 -1.449 c 1.695 -1.364 3.235 -2.72 3.462 -4.303 c 0.205 -1.425 -0.628 -3.067 -2.621 -5.167 C 32.64 25.618 31.064 24.659 29.64 24.659 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: currentColor; fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
+                        <path d="M 45 90 C 20.187 90 0 69.813 0 45 C 0 20.187 20.187 0 45 0 c 24.813 0 45 20.187 45 45 C 90 69.813 69.813 90 45 90 z M 45 4 C 22.393 4 4 22.393 4 45 s 18.393 41 41 41 s 41 -18.393 41 -41 S 67.607 4 45 4 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: currentColor; fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
+                    </g>
+                </svg>
+                <span id="phone" class="contact-info-span">(123)456-7890</span>
             </div>
         </div>
-    </nav>
-    <div id="content-wrapper">
-        <div id="navigator">
-            <div id="search-bar">
-                <div id="search-input-wrapper">
-                    <input id="search-input" type="text">
-                    <button id="search-btn">
-                        <img id="search-icon" src="../images/icons/search.svg" alt="" height="20px" width="20px">
-                    </button>
+        <div id="dashboard-menu">
+            <button id="menu-toggle" class="hamburger">
+                <span></span><span></span><span></span>
+            </button>
+            <div id="menu">
+                <div class="menu-page" id="menu-main">
+                    <button class="menu-btn" data-view="profile">Profile</button>
+                    <button class="menu-btn" data-view="settings">Settings</button>
+                    <button class="menu-btn" id="logout-btn">Logout</button>
                 </div>
-                <button id="add-contact-btn">+</button>
-            </div>
-            <div id="contact-list-background">
-                <ul id="contact-list">
-                    <li class="contact-entry">
-                        <img class="contact-icon" src="" alt="">
-                        <span class="contact-name">John Smith</span>
-                    </li>
-                </ul>
+                <div class="menu-page" id="menu-profile">
+                    Profile
+                </div>
+                <div class="menu-page" id="menu-settings">
+                    Settings
+                </div>
             </div>
         </div>
-        <div id="viewport"></div>
     </div>
     <script src="../js/baseurl.js"></script>
     <script src="../js/dashboard-menu-navigation.js"></script>
