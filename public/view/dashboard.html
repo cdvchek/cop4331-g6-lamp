@@ -67,16 +67,18 @@
             <button id="menu-toggle" class="hamburger">
                 <span></span><span></span><span></span>
             </button>
-            <div id="menu">
-                <div class="menu-page menu-active" id="menu-main">
+            <div id="menu" style="width: 150px; height: 180px;">
+                <div class="menu-page menu-active" id="menu-main" data-width="150px" data-height="180px">
                     <button class="menu-btn" data-view="profile">Profile</button>
                     <button class="menu-btn" data-view="settings">Settings</button>
                     <button class="menu-btn" id="logout-btn">Logout</button>
                 </div>
-                <div class="menu-page" id="menu-profile">
+                <div class="menu-page" id="menu-profile" data-width="260px" data-height="300px">
+                    <button class="menu-btn" data-view="main">Back</button>
                     Profile
                 </div>
-                <div class="menu-page" id="menu-settings">
+                <div class="menu-page" id="menu-settings" data-width="260px" data-height="300px">
+                    <button class="menu-btn" data-view="main">Back</button>
                     Settings
                 </div>
             </div>
@@ -84,6 +86,7 @@
     </div>
     <script src="../js/baseurl.js"></script>
     <script src="../js/dashboard-menu-navigation.js"></script>
+    <script src="../js/dashboard-search.js"></script>
     <!-- <script src="../js/dashboard-logout.js"></script> -->
 </body>
 </html>

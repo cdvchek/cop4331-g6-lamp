@@ -33,3 +33,23 @@ const close_menu_on_outside_click = (e) => {
 }
 
 document.addEventListener('click', close_menu_on_outside_click);
+
+const menu_btn_els = document.getElementsByClassName('menu-btn');
+
+const navigate_menu = (e) => {
+    const menu_page_els = document.getElementsByClassName('menu-page');
+    for (let i = 0; i < menu_page_els.length;i++) {
+        menu_page_els[i].setAttribute('class', 'menu-page');
+    }
+
+    const element = e.target;
+    const view = element.getAttribute('data-view');
+
+    const menu_page_el = document.getElementById('menu-' + view);
+    menu_page_el.setAttribute('class', 'menu-page menu-active');
+
+    const new_width = menu_page_el.getAttribute('data-width');
+    const new_height = menu_page_el.getAttribute('data-height');
+    menu_el.setAttribute('style', `width: ${new_width}; height: ${new_height};`);
+}
+for (let i = 0; i < menu_btn_els.length; i++) menu_btn_els[i].addEventListener('click', navigate_menu);
