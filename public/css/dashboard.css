@@ -65,6 +65,11 @@ body {
     background: none;
     font-size: 30px;
     color: rgb(17, 139, 180);
+    cursor: pointer;
+}
+
+#add-contact-form {
+    display: none;
 }
 
 #contact-list {
@@ -273,6 +278,9 @@ body {
 }
 
 #logout-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
     color: rgb(193, 68, 68);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
