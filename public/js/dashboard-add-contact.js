@@ -57,41 +57,38 @@ const add_contact = async () => {
     if (!isNonEmpty(phone) || !looksLikePhone(phone)) return toastError('Enter a valid phone.');
     if (!isNonEmpty(email) || !looksLikeEmail(email)) return toastError('Enter a valid email.');
 
-    const payload = { f_name, l_name, phone, email, user_id };
+    const payload = { FName: f_name, LName: l_name, Phone: phone, Email: email, UserID: user_id };
 
-    console.log(payload);
-    
+    try {
+        setBusy(true);
 
-    // try {
-    //     setBusy(true);
+        const res = await fetch(base_url + '/API/addContact.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
 
-    //     const res = await fetch(base_url + '/API/addContact.php', {
-    //         method: 'POST',
-    //         headers: { 'Content-Type': 'application/json' },
-    //         body: JSON.stringify(payload)
-    //     });
+        // Even if res.ok is true, your PHP returns a JSON {status: "..."}
+        const data = await res.json().catch(() => ({}));
 
-    //     // Even if res.ok is true, your PHP returns a JSON {status: "..."}
-    //     const data = await res.json().catch(() => ({}));
+        if (data.status === 'success') {
+            // Clear form
+            first_name_el.value = '';
+            last_name_el.value = '';
+            phone_el.value = '';
+            email_el.value = '';
 
-    //     if (data.status === 'success') {
-    //         // Clear form
-    //         first_name_el.value = '';
-    //         last_name_el.value = '';
-    //         phone_el.value = '';
-    //         email_el.value = '';
-
-    //         toastOK('Contact added!');
-    //     } else {
-    //         // Backend error message
-    //         toastError(data.message || 'Failed to add contact.');
-    //     }
-    // } catch (err) {
-    //     toastError('Network error adding contact.');
-    //     console.error(err);
-    // } finally {
-    //     setBusy(false);
-    // }
+            toastOK('Contact added!');
+        } else {
+            // Backend error message
+            toastError(data.message || 'Failed to add contact.');
+        }
+    } catch (err) {
+        toastError('Network error adding contact.');
+        console.error(err);
+    } finally {
+        setBusy(false);
+    }
 
     // Simple UX helpers
     function setBusy(isBusy) {
@@ -115,7 +112,7 @@ const add_contact = async () => {
         el?.addEventListener('keydown', e => {
             if (e.key === 'Enter') {
                 e.preventDefault();
-                addContact();
+                add_contact();
             }
         });
     });
