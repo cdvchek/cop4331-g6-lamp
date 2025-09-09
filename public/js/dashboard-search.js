@@ -22,15 +22,18 @@ const create_contact_el = (name) => {
 }
 
 const search_input_el = document.getElementById('search-input');
+const empty_search_el = document.getElementById('search-text');
 
 const search_contacts = async (e) => {    
+    const query = e.target.value;
+    empty_search_el.style.display = (query.length <= 0) ? 'block' : 'none';
+    
     for (let i = contact_list_el.children.length - 1; i >= 0; i--) {
         contact_list_el.children[i].remove();
     }
 
     // Uncomment when we have a searchContacts function in the backend
 
-    // const query = e.target.value;
     // const res = await fetch(`${base_url}/API/searchContacts.php`, {
     //     method: "POST",
     //     headers: { "Content-Type": "application/json" },
