@@ -34,9 +34,11 @@ body {
 
 #search-wrapper {
     width: 80%;
+    height: 210px;
 }
 
 #search-bar {
+    z-index: 10;
     background-color: rgb(242, 242, 242);
     height: 40px;
     border-radius: 10px;
@@ -66,14 +68,71 @@ body {
     font-size: 30px;
     color: rgb(17, 139, 180);
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#add-contact.add-open {
+    transform: rotate(45deg);
 }
 
 #add-contact-form {
-    display: none;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.add-contact-wrapper {
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 1px rgb(216, 216, 216) solid;
+    height: 25px;
+    width: 70%;
+    border-radius: 12.5px;
+    margin-bottom: 5px;
+}
+
+.add-contact-icon {
+    width: 16px; height: 16px;
+    margin-left: 8px; margin-right: 8px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.add-contact-input {
+    width: calc(100% - 32px);
+    background: none;
+    border: none;
+    height: 100%;
+}
+
+.add-contact-input:focus {
+    outline: none;
+}
+
+#fn-add-wrapper {
+    transition: transform 0.06s ease;
+    transform: translateY(0px);
+}
+
+#fn-add-wrapper.add-open {
+    transform: translateY(-40px);
+}
+
+#final-add-contact-btn {
+    background-color: rgb(17, 139, 180);
+    color: white;
+    height: 30px;
+    width: 70%;
+    border-radius: 15px;
+    border: none;
 }
 
 #contact-list {
-    width: 80%; height: calc(100% - 120px);
+    width: 80%; height: calc(100% - 350px);
     margin-top: 20px; margin-bottom: 40px;
     padding: 0;
     list-style-type: none;
