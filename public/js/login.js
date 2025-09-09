@@ -57,7 +57,7 @@ const login = async (e) => {
         localStorage.setItem("firstName", data.data.firstName);
         localStorage.setItem("lastName", data.data.lastName);
 
-        // window.location.href = base_url + "/view/dashboard.html";
+        window.location.href = base_url + "/view/dashboard.html";
     } else {
         // TODO: error handling
         error_msg_el.textContent = data.message;

@@ -62,6 +62,11 @@ body {
     font-size: 15px;
 }
 
+#error-msg {
+    margin-top: 15px;
+    color: rgb(246, 70, 70);
+}
+
 #signup-wrapper {
     flex-grow: 3;
     display: flex;
