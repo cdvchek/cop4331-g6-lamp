@@ -2,10 +2,27 @@
 const username_login_el = document.getElementById('username-input');
 const password_login_el = document.getElementById('password-input');
 const login_btn_el = document.getElementById('login-btn');
+const error_msg_el = document.getElementById('error-msg');
 
 // Function that runs when form is submitted or login button is pushed
 const login = async (e) => {
     e.preventDefault();
+
+    // validating name and password
+    let bad_input = false;
+    if (username_login_el.value.trim() === "") {
+        bad_input = true;
+        username_login_el.placeholder = "Name - Required";
+        username_login_el.setAttribute('class', "login-input bad-login-input");
+    }
+
+    if (password_login_el.value.trim() === "") {
+        bad_input = true;
+        password_login_el.placeholder = "Password - Required";
+        password_login_el.setAttribute('class', "login-input bad-login-input");
+    }
+
+    if (bad_input) return;
     
     // Package the data to send to the back end
     const payload = {
@@ -24,8 +41,10 @@ const login = async (e) => {
     
     // Read the response for error handling
     if (!res.ok) {
-        // TODO: error handling
+        
     }
+
+    res.status[0]
 
     // Get the data from the response
     const data = await res.json();
@@ -41,6 +60,7 @@ const login = async (e) => {
         // window.location.href = base_url + "/view/dashboard.html";
     } else {
         // TODO: error handling
+        error_msg_el.textContent = data.message;
     }
 }
 
