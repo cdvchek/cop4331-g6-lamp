@@ -10,6 +10,7 @@ $lastName = "";
 $conn = get_db_connection();
 if( $conn->connect_error )
 {
+	http_response_code(500); // Internal Server Error
 	returnWithError( $conn->connect_error );
 	exit();
 }
@@ -25,6 +26,7 @@ if ($stmt->fetch() && password_verify($inData['password'], $storedHash))
 }
 else
 {
+	http_response_code(401); // Unauthorized
 	returnWithError("Incorrect Username or Password");
 }
 

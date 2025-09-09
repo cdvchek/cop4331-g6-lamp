@@ -6,12 +6,14 @@ $inData = getRequestInfo();
 
 // Check that input exists
 if (!$inData) {
+    http_response_code(404); // Not Found
     returnWithError("No input data");
     exit();
 }
 
 // Check required fields
 if (!isset($inData["UserID"]) || !isset($inData["ContactID"])) {
+    http_response_code(400); // Bad Request
     returnWithError("Missing UserID or ContactID");
     exit();
 }
@@ -21,7 +23,10 @@ $ContactID = $inData["ContactID"];
 
 // Database connection
 $conn = get_db_connection();
+
+// Check connection
 if ($conn->connect_error) {
+    http_response_code(500); // Internal Server Error
     returnWithError($conn->connect_error);
     exit();
 }
@@ -35,9 +40,11 @@ if ($stmt->execute()) {
     if ($stmt->affected_rows > 0) {
         echo json_encode(["status" => "success", "message" => "Contact deleted"]);
     } else {
+        http_response_code(404); // Not Found
         echo json_encode(["status" => "error", "message" => "No contact found for this user"]);
     }
 } else {
+    http_response_code(500); // Internal Server Error
     echo json_encode(["status" => "error", "message" => $stmt->error]);
 }
 

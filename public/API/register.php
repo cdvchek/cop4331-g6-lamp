@@ -8,12 +8,14 @@ $inData = getRequestInfo();
 
 // Check if input data is provided
 if (!$inData) {
+    http_response_code(400); // Bad Request
     returnWithError("No input data");
     exit();
 }
 
 // Validating the required fields
 if (!isset($inData['firstName'], $inData['lastName'], $inData['username'], $inData['password'])) {
+    http_response_code(400); // Bad Request
     returnWithError("All fields are required: firstName, lastName, username, password");
     exit();
 }
@@ -27,6 +29,7 @@ $Password = $inData['password']; // Plain text password (will be hashed before s
 // Connect to the database
 $conn = get_db_connection();
 if ($conn->connect_error) {
+    http_response_code(500); // Internal Server Error
     returnWithError($conn->connect_error);
     exit();
 }
@@ -40,6 +43,7 @@ $result = $stmt->get_result();
 // If Username is taken, we are returning an error
 if ($result->fetch_assoc()) {
     $stmt->close();
+    http_response_code(409); // Conflict
     returnWithError("Username already taken");
     exit();
 }
@@ -53,6 +57,7 @@ $hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
 // Inserting new user into the database
 $insertStmt = $conn->prepare("INSERT INTO Users (FName, LName, Username, Password) VALUES (?, ?, ?, ?)");
 if (!$insertStmt) {
+    http_response_code(500); // Internal Server Error
     returnWithError("Prepare failed: " . $conn->error);
     exit();
 }
