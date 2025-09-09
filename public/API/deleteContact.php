@@ -6,7 +6,7 @@ $inData = getRequestInfo();
 
 // Check that input exists
 if (!$inData) {
-    http_response_code(404); // Not Found
+    http_response_code(400); // Not Found
     returnWithError("No input data");
     exit();
 }
@@ -18,8 +18,15 @@ if (!isset($inData["UserID"]) || !isset($inData["ContactID"])) {
     exit();
 }
 
-$UserID = $inData["UserID"];
-$ContactID = $inData["ContactID"];
+// Validating UserID and ContactID as integers
+$UserID = filter_var($inData["UserID"], FILTER_VALIDATE_INT);
+$ContactID = filter_var($inData["ContactID"], FILTER_VALIDATE_INT);
+
+if ($UserID === false || $ContactID === false) {
+    http_response_code(400); // Bad Request
+    returnWithError("UserID and ContactID must be valid integers");
+    exit();
+}
 
 // Database connection
 $conn = get_db_connection();
@@ -31,6 +38,22 @@ if ($conn->connect_error) {
     exit();
 }
 
+// Verify that the contact belongs to the user
+$verifyStmt = $conn->prepare("SELECT ContactID FROM Contacts WHERE ContactID = ? AND UserID = ?");
+$verifyStmt->bind_param("ii", $ContactID, $UserID);
+$verifyStmt->execute();
+$verifyResult = $verifyStmt->get_result();
+if (!$verifyResult->fetch_assoc()) {
+    http_response_code(404); // Not Found
+    returnWithError("No contact found for this user");
+    $verifyStmt->close();
+    $conn->close();
+    exit();
+}
+$verifyStmt->close();
+
+
+
 // Prepare DELETE statement to remove only the specific contact for this user
 $stmt = $conn->prepare("DELETE FROM Contacts WHERE ContactID = ? AND UserID = ?");
 $stmt->bind_param("ii", $ContactID, $UserID);
@@ -38,9 +61,10 @@ $stmt->bind_param("ii", $ContactID, $UserID);
 // Execute and return response
 if ($stmt->execute()) {
     if ($stmt->affected_rows > 0) {
+        http_response_code(200); // OK
         echo json_encode(["status" => "success", "message" => "Contact deleted"]);
     } else {
-        http_response_code(404); // Not Found
+        http_response_code(404); //not found
         echo json_encode(["status" => "error", "message" => "No contact found for this user"]);
     }
 } else {
