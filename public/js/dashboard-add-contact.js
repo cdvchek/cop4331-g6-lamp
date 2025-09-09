@@ -36,7 +36,10 @@ const isNonEmpty = s => typeof s === 'string' && s.trim().length > 0;
 const looksLikeEmail = s => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
 const looksLikePhone = s => s.replace(/[^\d]/g,'').length >= 7;
 
+console.log(add_contact_btn);
 const add_contact = async () => {
+    console.log("trying");
+    
     const f_name = first_name_el.value.trim();
     const l_name = last_name_el.value.trim();
     const phone = phone_el.value.trim();
@@ -107,9 +110,6 @@ const add_contact = async () => {
         // you could also show a small inline error near the form
     }
 
-    // Wire up
-    add_contact_btn?.addEventListener('click', add_contact);
-
     // Also allow Enter key in inputs to trigger add
     [first_name_el, last_name_el, phone_el, email_el].forEach(el => {
         el?.addEventListener('keydown', e => {
@@ -120,3 +120,5 @@ const add_contact = async () => {
         });
     });
 }
+
+add_contact_btn.addEventListener('click', add_contact);
