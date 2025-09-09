@@ -34,16 +34,24 @@ body {
 
 #search-wrapper {
     width: 80%;
+    height: 40px;
+    position: relative;
+    isolation: isolate;
+    transition: height 0.3s ease;
+}
+
+#search-wrapper.open {
     height: 210px;
 }
 
 #search-bar {
-    z-index: 10;
     background-color: rgb(242, 242, 242);
     height: 40px;
     border-radius: 10px;
     display: flex;
     align-items: center;
+    position: relative;
+    z-index: 2;
 }
 
 #search-icon {
@@ -71,8 +79,16 @@ body {
     transition: transform 0.3s ease;
 }
 
+#add-contact:hover {
+    transform: scale(1.2);
+}
+
 #add-contact.add-open {
     transform: rotate(45deg);
+}
+
+#add-contact.add-open:hover {
+    transform: rotate(45deg) scale(1.2);
 }
 
 #add-contact-form {
@@ -82,10 +98,11 @@ body {
     justify-content: space-around;
     align-items: center;
     width: 100%;
+    position: relative;
+    z-index: 0;
 }
 
 .add-contact-wrapper {
-    z-index: 5;
     display: flex;
     align-items: center;
     background-color: white;
@@ -94,6 +111,8 @@ body {
     width: 70%;
     border-radius: 12.5px;
     margin-bottom: 5px;
+    position: relative;
+    z-index: 0;
 }
 
 .add-contact-icon {
@@ -115,11 +134,38 @@ body {
 
 #fn-add-wrapper {
     transition: transform 0.06s ease;
-    transform: translateY(0px);
+    transform: translateY(-40px);
 }
 
 #fn-add-wrapper.add-open {
-    transform: translateY(-40px);
+    transform: translateY(0px);
+}
+
+#ln-add-wrapper {
+    transition: transform 0.12s ease;
+    transform: translateY(-72px);
+}
+
+#ln-add-wrapper.add-open {
+    transform: translateY(0px);
+}
+
+#phone-add-wrapper {
+    transition: transform 0.18s ease;
+    transform: translateY(-104px);
+}
+
+#phone-add-wrapper.add-open {
+    transform: translateY(0px);
+}
+
+#email-add-wrapper {
+    transition: transform 0.24s ease;
+    transform: translateY(-136px);
+}
+
+#email-add-wrapper.add-open {
+    transform: translateY(0px);
 }
 
 #final-add-contact-btn {
@@ -129,13 +175,30 @@ body {
     width: 70%;
     border-radius: 15px;
     border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    transform: translateY(-168px);
+}
+
+#final-add-contact-btn:hover {
+    background-color: rgb(14, 120, 156);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+#final-add-contact-btn.add-open {
+    transform: translateY(0px);
 }
 
 #contact-list {
-    width: 80%; height: calc(100% - 350px);
+    width: 80%; height: calc(100% - 120px);
     margin-top: 20px; margin-bottom: 40px;
     padding: 0;
     list-style-type: none;
+    transition: height 0.3s ease;
+}
+
+#contact-list.add-open {
+    height: calc(100% - 350px);
 }
 
 .contact-entry:nth-of-type(1) {
