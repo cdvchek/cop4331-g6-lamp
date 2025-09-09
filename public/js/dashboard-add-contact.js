@@ -56,36 +56,39 @@ const add_contact = async () => {
 
     const payload = { f_name, l_name, phone, email, user_id };
 
-    try {
-        setBusy(true);
+    console.log(payload);
+    
 
-        const res = await fetch(base_url + '/API/addContact.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
+    // try {
+    //     setBusy(true);
 
-        // Even if res.ok is true, your PHP returns a JSON {status: "..."}
-        const data = await res.json().catch(() => ({}));
+    //     const res = await fetch(base_url + '/API/addContact.php', {
+    //         method: 'POST',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify(payload)
+    //     });
 
-        if (data.status === 'success') {
-            // Clear form
-            first_name_el.value = '';
-            last_name_el.value = '';
-            phone_el.value = '';
-            email_el.value = '';
+    //     // Even if res.ok is true, your PHP returns a JSON {status: "..."}
+    //     const data = await res.json().catch(() => ({}));
 
-            toastOK('Contact added!');
-        } else {
-            // Backend error message
-            toastError(data.message || 'Failed to add contact.');
-        }
-    } catch (err) {
-        toastError('Network error adding contact.');
-        console.error(err);
-    } finally {
-        setBusy(false);
-    }
+    //     if (data.status === 'success') {
+    //         // Clear form
+    //         first_name_el.value = '';
+    //         last_name_el.value = '';
+    //         phone_el.value = '';
+    //         email_el.value = '';
+
+    //         toastOK('Contact added!');
+    //     } else {
+    //         // Backend error message
+    //         toastError(data.message || 'Failed to add contact.');
+    //     }
+    // } catch (err) {
+    //     toastError('Network error adding contact.');
+    //     console.error(err);
+    // } finally {
+    //     setBusy(false);
+    // }
 
     // Simple UX helpers
     function setBusy(isBusy) {

@@ -29,6 +29,8 @@ const login = async (e) => {
     const data = await res.json();
 
     // Save the data locally in the browser
+    console.log(data);
+    
     if (data.status == "success") {
         localStorage.setItem("userId", data.id);
         localStorage.setItem("firstName", data.firstName);
