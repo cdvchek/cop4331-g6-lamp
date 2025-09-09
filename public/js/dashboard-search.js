@@ -1,5 +1,4 @@
 const contact_list_el = document.getElementById('contact-list');
-const user_id = localStorage.getItem('userId');
 
 const create_contact_el = (name) => {
     const contact_li = document.createElement('li');
@@ -35,7 +34,7 @@ const search_contacts = async (e) => {
     // const res = await fetch(`${base_url}/API/searchContacts.php`, {
     //     method: "POST",
     //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({ userId: user_id, query: query })
+    //     body: JSON.stringify({ userId: get_user_id(), query: query })
     // });
     // const json = await res.json();
 

@@ -1,1 +1,0 @@
-const base_url = "http://www.myaedojourney.xyz";
