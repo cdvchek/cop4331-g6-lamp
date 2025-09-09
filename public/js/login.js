@@ -32,9 +32,9 @@ const login = async (e) => {
     console.log(data);
     
     if (data.status == "success") {
-        localStorage.setItem("userId", data.id);
-        localStorage.setItem("firstName", data.firstName);
-        localStorage.setItem("lastName", data.lastName);
+        localStorage.setItem("userId", data.data.id);
+        localStorage.setItem("firstName", data.data.firstName);
+        localStorage.setItem("lastName", data.data.lastName);
 
         window.location.href = base_url + "/view/dashboard.html";
     } else {
