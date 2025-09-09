@@ -20,6 +20,8 @@ const login = async (e) => {
         body: JSON.stringify(payload)
     });
 
+    console.log(res);
+    
     // Read the response for error handling
     if (!res.ok) {
         // TODO: error handling
@@ -36,7 +38,7 @@ const login = async (e) => {
         localStorage.setItem("firstName", data.data.firstName);
         localStorage.setItem("lastName", data.data.lastName);
 
-        window.location.href = base_url + "/view/dashboard.html";
+        // window.location.href = base_url + "/view/dashboard.html";
     } else {
         // TODO: error handling
     }
