@@ -7,6 +7,37 @@ const signup_btn_el = document.getElementById('signup-btn');
 const signup = async (e) => {
     e.preventDefault();
 
+    // validating first name
+    let bad_input = false;
+    if (f_name_el.value.trim() === "") {
+        bad_input = true;
+        f_name_el.placeholder = "First Name - Required";
+        f_name_el.setAttribute('class', "signup-input bad-signup-input");
+    }
+
+    // validating last name
+    if (l_name_el.value.trim() === "") {
+        bad_input = true;
+        l_name_el.placeholder = "Last Name - Required";
+        l_name_el.setAttribute('class', "signup-input bad-signup-input");
+    }
+
+    // validating username
+    if (username_el.value.trim() === "") {
+        bad_input = true;
+        username_el.placeholder = "Username - Required";
+        username_el.setAttribute('class', "signup-input bad-signup-input");
+    }
+
+    // validating password
+    if (password_el.value.trim() === "") {
+        bad_input = true;
+        password_el.placeholder = "Password - Required";
+        password_el.setAttribute('class', "signup-input bad-signup-input");
+    }
+
+    if (bad_input) return;
+
     const payload = {
         firstName: f_name_el.value.trim(),
         lastName: l_name_el.value.trim(),
