@@ -1,5 +1,8 @@
 body {
-    background: linear-gradient(45deg, #41cdda, #246a80);
+    /* background: linear-gradient(45deg, #41cdda, #246a80); */
+    background-image: url("../images/icons/bg.png");
+    background-size: cover;
+    background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,6 +20,8 @@ body {
     flex-direction: column;
     align-items: center;
     padding-bottom: 75px;
+    border-radius: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
 
 #signup-title {
