@@ -26,6 +26,8 @@ const empty_search_el = document.getElementById('search-text');
 
 const search_contacts = async (e) => {    
     const query = e.target.value;
+    if (query.length === 0) return;
+
     empty_search_el.style.display = (query.length <= 0) ? 'block' : 'none';
     
     for (let i = contact_list_el.children.length - 1; i >= 0; i--) {
@@ -42,6 +44,7 @@ const search_contacts = async (e) => {
     if (json.status === "success") {
         for (let i = 0; i < json.data.length; i++) {
             const c = json.data[i];
+            console.log(c);
             create_contact_el(`${c.FName} ${c.LName}`);
         }
     } else {
