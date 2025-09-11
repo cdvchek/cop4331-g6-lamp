@@ -1,19 +1,21 @@
 const contact_list_el = document.getElementById('contact-list');
 
-const create_contact_el = (name) => {
+const create_contact_el = (first_name, last_name, email, phone) => {
     const contact_li = document.createElement('li');
     contact_li.setAttribute('class', 'contact-entry');
+    contact_li.setAttribute('data-email', email);
+    contact_li.setAttribute('data-phone', phone);
 
     const contact_icon_div = document.createElement('div');
     contact_icon_div.setAttribute('class', 'contact-icon');
 
     const contact_icon_span = document.createElement('span');
     contact_icon_span.setAttribute('class', 'contact-icon-letter');
-    contact_icon_span.textContent = name[0];
+    contact_icon_span.textContent = first_name[0];
 
     const contact_name_span = document.createElement('span');
     contact_name_span.setAttribute('class', 'contact-name');
-    contact_name_span.textContent = name;
+    contact_name_span.textContent = `${first_name} ${last_name}`;
 
     contact_icon_div.appendChild(contact_icon_span);
     contact_li.appendChild(contact_icon_div);
@@ -45,7 +47,7 @@ const search_contacts = async (e) => {
         for (let i = 0; i < json.data.length; i++) {
             const c = json.data[i];
             console.log(c);
-            create_contact_el(`${c.FName} ${c.LName}`);
+            create_contact_el(c.FName, c.LName, c.Email, c.Phone);
         }
     } else {
         console.error(json.message || "Search error");
