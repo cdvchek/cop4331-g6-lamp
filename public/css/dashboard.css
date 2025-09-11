@@ -136,6 +136,10 @@ body {
     pointer-events: none;
 }
 
+#add-contact-form.add-open {
+    pointer-events: auto;
+}
+
 .add-contact-wrapper {
     display: flex;
     align-items: center;
