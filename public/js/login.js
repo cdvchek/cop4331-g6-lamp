@@ -5,13 +5,21 @@ const login_btn_el = document.getElementById('login-btn');
 const error_msg_el = document.getElementById('error-msg');
 const remember_me = document.getElementById('remember-me');
 
+const check_remember_me = () => {
+    const username = localStorage.getItem('login-username');
+    const password = localStorage.getItem('login-password');
+
+    if (username && password) {
+        username_login_el.value = username;
+        password_login_el.value = password;
+    }
+}
+
+check_remember_me();
+
 // Function that runs when form is submitted or login button is pushed
 const login = async (e) => {
     e.preventDefault();
-
-    if (remember_me.checked) {
-        // TODO: implement remember me function
-    }
 
     // validating name and password
     let bad_input = false;
@@ -54,21 +62,6 @@ const login = async (e) => {
     // Get the data from the response
     const data = await res.json();
 
-    // usname or password has data but is still invalid
-    // if (data.status == "error" && data.message.includes("username")) {
-    //     bad_input = true;
-    //     username_login_el.value = "";
-    //     username_login_el.placeholder = "Invalid Username";
-    //     username_login_el.setAttribute('class', "login-input bad-login-input");
-    // }
-
-    // if (data.status == "error" && data.message.includes("password")) {
-    //     bad_input = true;
-    //     username_login_el.value = "";
-    //     username_login_el.placeholder = "Invalid password";
-    //     username_login_el.setAttribute('class', "login-input bad-login-input");
-    // }
-
     // Save the data locally in the browser
     console.log(data);
     
@@ -76,6 +69,14 @@ const login = async (e) => {
         localStorage.setItem("userId", data.data.id);
         localStorage.setItem("firstName", data.data.firstName);
         localStorage.setItem("lastName", data.data.lastName);
+
+        if (remember_me.checked) {
+            localStorage.setItem("login-username");
+            localStorage.setItem("login-password");
+        } else {
+            localStorage.removeItem("login-username");
+            localStorage.removeItem("login-password");
+        }
 
         window.location.href = "../view/dashboard.html";
     } else {
