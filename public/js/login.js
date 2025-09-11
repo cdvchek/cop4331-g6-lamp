@@ -83,8 +83,7 @@ const login = async (e) => {
         transition_div.setAttribute('class', 'end');
 
         setTimeout(() => {
-            console.log("next");
-            //window.location.href = "../view/dashboard.html";
+            window.location.href = "../view/dashboard.html";
         }, 300);
 
     } else {
