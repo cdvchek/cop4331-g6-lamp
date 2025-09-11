@@ -4,6 +4,7 @@ const password_login_el = document.getElementById('password-input');
 const login_btn_el = document.getElementById('login-btn');
 const error_msg_el = document.getElementById('error-msg');
 const remember_me = document.getElementById('remember-me');
+const transition_div = document.getElementById('transition');
 
 const check_remember_me = () => {
     const username = localStorage.getItem('login-username');
@@ -79,7 +80,12 @@ const login = async (e) => {
             localStorage.removeItem("login-password");
         }
 
-        window.location.href = "../view/dashboard.html";
+        transition_div.setAttribute('class', 'end');
+
+        setTimeout(() => {
+            window.location.href = "../view/dashboard.html";
+        }, 300);
+
     } else {
         // TODO: error handling
         error_msg_el.textContent = data.message;
