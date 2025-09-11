@@ -71,8 +71,8 @@ const login = async (e) => {
         localStorage.setItem("lastName", data.data.lastName);
 
         if (remember_me.checked) {
-            localStorage.setItem("login-username");
-            localStorage.setItem("login-password");
+            localStorage.setItem("login-username", payload.login);
+            localStorage.setItem("login-password", payload.password);
         } else {
             localStorage.removeItem("login-username");
             localStorage.removeItem("login-password");
