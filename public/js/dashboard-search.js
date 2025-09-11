@@ -1,3 +1,23 @@
+const big_contact_icon_el = document.getElementById('contact-icon-letter');
+const big_contact_fname = document.getElementById('first-name');
+const big_contact_lname = document.getElementById('last-name');
+const big_contact_email = document.getElementById('email');
+const big_contact_phone = document.getElementById('phone');
+
+const contact_click = (e) => {
+    const target = e.target;
+    const first_name = target.getAttribute('data-fname');
+    const last_name = target.getAttribute('data-lname');
+    const email = target.getAttribute('data-email');
+    const phone = target.getAttribute('data-phone');
+
+    big_contact_icon_el.textContent = first_name[0];
+    big_contact_fname.textContent = first_name;
+    big_contact_lname.textContent = last_name;
+    big_contact_email.textContent = email;
+    big_contact_phone.textContent = phone;
+}
+
 const contact_list_el = document.getElementById('contact-list');
 
 const create_contact_el = (first_name, last_name, email, phone) => {
@@ -7,6 +27,7 @@ const create_contact_el = (first_name, last_name, email, phone) => {
     contact_li.setAttribute('data-lname', last_name);
     contact_li.setAttribute('data-email', email);
     contact_li.setAttribute('data-phone', phone);
+    contact_li.addEventListener('click', contact_click);
 
     const contact_icon_div = document.createElement('div');
     contact_icon_div.setAttribute('class', 'contact-icon');
