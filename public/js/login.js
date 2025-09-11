@@ -4,10 +4,12 @@ const password_login_el = document.getElementById('password-input');
 const login_btn_el = document.getElementById('login-btn');
 const error_msg_el = document.getElementById('error-msg');
 const remember_me = document.getElementById('remember-me');
+const transition_div = document.getElementById('transition');
 
 const check_remember_me = () => {
     const username = localStorage.getItem('login-username');
     const password = localStorage.getItem('login-password');
+    remember_me.checked = true;
 
     if (username && password) {
         username_login_el.value = username;
@@ -71,14 +73,20 @@ const login = async (e) => {
         localStorage.setItem("lastName", data.data.lastName);
 
         if (remember_me.checked) {
-            localStorage.setItem("login-username");
-            localStorage.setItem("login-password");
+            localStorage.setItem("login-username", payload.login);
+            localStorage.setItem("login-password", payload.password);
         } else {
             localStorage.removeItem("login-username");
             localStorage.removeItem("login-password");
         }
 
-        window.location.href = "../view/dashboard.html";
+        transition_div.setAttribute('class', 'end');
+
+        setTimeout(() => {
+            console.log("next");
+            //window.location.href = "../view/dashboard.html";
+        }, 300);
+
     } else {
         // TODO: error handling
         error_msg_el.textContent = data.message;
