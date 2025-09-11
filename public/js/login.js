@@ -54,21 +54,6 @@ const login = async (e) => {
     // Get the data from the response
     const data = await res.json();
 
-    // usname or password has data but is still invalid
-    // if (data.status == "error" && data.message.includes("username")) {
-    //     bad_input = true;
-    //     username_login_el.value = "";
-    //     username_login_el.placeholder = "Invalid Username";
-    //     username_login_el.setAttribute('class', "login-input bad-login-input");
-    // }
-
-    // if (data.status == "error" && data.message.includes("password")) {
-    //     bad_input = true;
-    //     username_login_el.value = "";
-    //     username_login_el.placeholder = "Invalid password";
-    //     username_login_el.setAttribute('class', "login-input bad-login-input");
-    // }
-
     // Save the data locally in the browser
     console.log(data);
     
