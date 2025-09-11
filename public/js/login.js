@@ -8,6 +8,7 @@ const remember_me = document.getElementById('remember-me');
 const check_remember_me = () => {
     const username = localStorage.getItem('login-username');
     const password = localStorage.getItem('login-password');
+    remember_me.checked = true;
 
     if (username && password) {
         username_login_el.value = username;
