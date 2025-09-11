@@ -5,7 +5,9 @@ const big_contact_email = document.getElementById('email');
 const big_contact_phone = document.getElementById('phone');
 
 const contact_click = (e) => {
-    const target = e.target;
+    let target = e.target;
+    while (target.getAttribute('class') !== "contact-entry") target = target.parentNode;
+
     const first_name = target.getAttribute('data-fname');
     const last_name = target.getAttribute('data-lname');
     const email = target.getAttribute('data-email');
@@ -22,7 +24,6 @@ const contact_list_el = document.getElementById('contact-list');
 
 const create_contact_el = (first_name, last_name, email, phone) => {
     const contact_li = document.createElement('li');
-    contact_li.setAttribute('style', 'z-index: 10;');
     contact_li.setAttribute('class', 'contact-entry');
     contact_li.setAttribute('data-fname', first_name);
     contact_li.setAttribute('data-lname', last_name);
