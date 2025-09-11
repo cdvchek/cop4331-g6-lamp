@@ -31,24 +31,22 @@ const search_contacts = async (e) => {
     for (let i = contact_list_el.children.length - 1; i >= 0; i--) {
         contact_list_el.children[i].remove();
     }
+    
+    const res = await fetch(`${base_url}/API/searchContact.php`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ UserId: get_user_id(), FName: query, LName: query })
+    });
+    const json = await res.json();
 
-    // Uncomment when we have a searchContacts function in the backend
-
-    // const res = await fetch(`${base_url}/API/searchContacts.php`, {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({ userId: get_user_id(), query: query })
-    // });
-    // const json = await res.json();
-
-    // if (json.status === "success") {
-    //     for (let i = 0; i < json.data.length; i++) {
-    //         const c = json.data[i];
-    //         create_contact_el(`${c.firstName} ${c.lastName}`);
-    //     }
-    // } else {
-    //     console.error(json.message || "Search error");
-    // }
+    if (json.status === "success") {
+        for (let i = 0; i < json.data.length; i++) {
+            const c = json.data[i];
+            create_contact_el(`${c.FName} ${c.LName}`);
+        }
+    } else {
+        console.error(json.message || "Search error");
+    }
 }
 
 search_input_el.addEventListener('input', search_contacts);

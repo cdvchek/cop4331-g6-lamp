@@ -19,7 +19,7 @@ else
     // ID auto-generates, so leave it out
     $FName = "%".$FName."%";
     $LName = "%".$LName."%";
-    $stmt = $conn->prepare('SELECT FName, LName, Phone, Email FROM Contacts WHERE UserID = ? AND FName LIKE ? AND LName LIKE ?');
+    $stmt = $conn->prepare('SELECT FName, LName, Phone, Email FROM Contacts WHERE UserID = ? AND FName LIKE ? OR LName LIKE ?');
     $stmt->bind_param("iss", $id,  $FName, $LName);
     $stmt->execute();
 
