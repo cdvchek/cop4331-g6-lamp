@@ -36,7 +36,6 @@ const isNonEmpty = s => typeof s === 'string' && s.trim().length > 0;
 const looksLikeEmail = s => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
 const looksLikePhone = s => s.replace(/[^\d]/g,'').length >= 7;
 
-console.log(add_contact_btn);
 const add_contact = async () => {
     console.log("trying");
     

@@ -19,9 +19,11 @@ else
     // ID auto-generates, so leave it out
     $FName = "%".$FName."%";
     $LName = "%".$LName."%";
-    $stmt = $conn->prepare('SELECT FName, LName, Phone, Email FROM Contacts WHERE UserID = ? AND FName LIKE ? OR LName LIKE ?');
+    $stmt = $conn->prepare('SELECT FName, LName, Phone, Email FROM Contacts WHERE UserID = ? AND (FName LIKE ? OR LName LIKE ?)');
     $stmt->bind_param("iss", $id,  $FName, $LName);
-    $stmt->execute();
+    if(!$stmt->execute()) {
+        sendResultInfoAsJson(json_encode(["status" => "error", "message" => $conn->error]));
+    }
 
     $result = $stmt->get_result();
 
@@ -33,12 +35,8 @@ else
         }
     }
     
-    if($stmt->execute()) {
-        sendResultInfoAsJson(json_encode(["status" => "success", "data" => $results]));
-    } 
-    else {
-        sendResultInfoAsJson(json_encode(["status" => "error", "message" => $conn->error]));
-    }
+    sendResultInfoAsJson(json_encode(["status" => "success", "data" => $results]));
+      
     $stmt->close();
     $conn->close();
 }
