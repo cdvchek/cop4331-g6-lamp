@@ -22,6 +22,7 @@ const contact_list_el = document.getElementById('contact-list');
 
 const create_contact_el = (first_name, last_name, email, phone) => {
     const contact_li = document.createElement('li');
+    contact_li.setAttribute('style', 'z-index: 10;');
     contact_li.setAttribute('class', 'contact-entry');
     contact_li.setAttribute('data-fname', first_name);
     contact_li.setAttribute('data-lname', last_name);
