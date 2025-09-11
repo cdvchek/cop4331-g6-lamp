@@ -100,7 +100,6 @@ body {
 }
 
 #transition {
-    display: none;
     position: fixed;
     width: 500px;
     height: calc(85vh - 75px);
@@ -110,9 +109,10 @@ body {
     opacity: 0;
     transition: opacity 0.3s ease;
     background-color: white;
+    pointer-events: none;
+    border-radius: 25px;
 }
 
 #transition.end {
-    display: block;
     opacity: 1;
 }
