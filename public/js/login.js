@@ -3,10 +3,15 @@ const username_login_el = document.getElementById('username-input');
 const password_login_el = document.getElementById('password-input');
 const login_btn_el = document.getElementById('login-btn');
 const error_msg_el = document.getElementById('error-msg');
+const remember_me = document.getElementById('remember-me');
 
 // Function that runs when form is submitted or login button is pushed
 const login = async (e) => {
     e.preventDefault();
+
+    if (remember_me.checked) {
+        // TODO: implement remember me function
+    }
 
     // validating name and password
     let bad_input = false;
