@@ -32,7 +32,7 @@ body {
 }
 
 .signup-input-wrapper {
-    background-color: #e2e2e2;
+    background-color: white;
     display: flex;
     align-items: center;
     padding-left: 8px;
@@ -40,6 +40,10 @@ body {
     width: 250px;
     height: 40px;
     margin-bottom: 10px;
+    border: 1px rgb(216, 216, 216) solid;
+    border-radius: 20px;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 .signup-input, .signup-input:focus {
@@ -63,9 +67,12 @@ body {
     width: 266px;
     height: 40px;
     margin-top: 20px;
-    background-color: #32abb6;
+    background-color: rgb(17, 139, 180);
     color: white;
     font-size: 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 #login-wrapper {
