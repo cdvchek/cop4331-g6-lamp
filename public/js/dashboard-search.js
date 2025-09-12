@@ -52,7 +52,7 @@ const search_input_el = document.getElementById('search-input');
 const empty_search_el = document.getElementById('search-text');
 
 const search_contacts = async (e) => {    
-    const query = e.target.value;
+    const query = e.target.value.trim();
     
     for (let i = contact_list_el.children.length - 1; i >= 0; i--) {
         contact_list_el.children[i].remove();
