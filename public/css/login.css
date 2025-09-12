@@ -1,5 +1,4 @@
 body {
-    /* background: linear-gradient(45deg, #41cdda, #246a80); */
     background-image: url("../images/bg.png");
     background-size: cover;
     background-position: center;
@@ -64,6 +63,8 @@ body {
 
 #remember-me-wrapper {
     width: 266px;
+    font-family: 'Verdana', sans-serif;
+    font-size: 13px;
 }
 
 #login-btn {
@@ -93,6 +94,8 @@ body {
     flex-grow: 3;
     display: flex;
     align-items: flex-end;
+    font-family: 'Verdana', sans-serif;
+    font-size: 14px;
 }
 
 #signup-span {
