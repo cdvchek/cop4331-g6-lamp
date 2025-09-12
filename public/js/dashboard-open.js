@@ -8,4 +8,4 @@ body_open_el.setAttribute('class', 'end');
 
 setTimeout(() => {
     opener_el.setAttribute('class', 'end done');
-}, 1000);
+}, 1500);
