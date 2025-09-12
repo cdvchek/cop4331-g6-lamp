@@ -54,12 +54,12 @@ const empty_search_el = document.getElementById('search-text');
 const search_contacts = async (e) => {    
     const query = e.target.value;
     
-    empty_search_el.style.display = (query.length <= 0) ? 'block' : 'none';
-    if (query.length === 0) return;
-    
     for (let i = contact_list_el.children.length - 1; i >= 0; i--) {
         contact_list_el.children[i].remove();
     }
+    
+    empty_search_el.style.display = (query.length <= 0) ? 'block' : 'none';
+    if (query.length === 0) return;
     
     const res = await fetch(`${base_url}/API/searchContact.php`, {
         method: "POST",
