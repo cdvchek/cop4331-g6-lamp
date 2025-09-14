@@ -9,9 +9,9 @@ const transition_div = document.getElementById('transition');
 const check_remember_me = () => {
     const username = localStorage.getItem('login-username');
     const password = localStorage.getItem('login-password');
-    remember_me.checked = true;
-
+    
     if (username && password) {
+        remember_me.checked = true;
         username_login_el.value = username;
         password_login_el.value = password;
     }
