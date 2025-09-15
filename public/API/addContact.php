@@ -1,6 +1,19 @@
 <?php
+session_start();
+
 include('./util.php');
 require_once __DIR__ . '/db.php';
+
+//Checking to see if user is logged in
+if(!isset($_SESSION["user_id"])){
+    http_response_code(401);
+    echo json_encode(["status" => "error", "message" => "you must be logged in"]);
+    exit();
+}
+
+// Use session user_id instead of sending it from client
+$UserID = $_SESSION["user_id"];
+
 
 // Getting the JSON input from the Client
 $inData = getRequestInfo();
@@ -13,7 +26,7 @@ if (!$inData) {
 }
 
 // Required fields check
-$requiredFields = ["FName", "LName", "Phone", "Email", "UserID"];
+$requiredFields = ["FName", "LName", "Phone", "Email"];
 foreach ($requiredFields as $field) {
     if (!isset($inData[$field])) {
         http_response_code(400); // Bad Request
@@ -26,7 +39,6 @@ $FName = trim($inData["FName"]);
 $LName = trim($inData["LName"]);
 $Phone = trim($inData["Phone"]);
 $Email = strtolower(trim($inData["Email"])); // Normalize email to lowercase
-$UserID = $inData["UserID"];
 
 //------------- Input validations ------------------//
 

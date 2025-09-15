@@ -1,4 +1,6 @@
 <?php
+session_start(); // Starts the session
+
 include('./util.php');
 require_once __DIR__ . '/db.php';
 $inData = getRequestInfo();
@@ -22,6 +24,11 @@ $stmt->bind_result($storedHash, $firstName, $lastName, $id);
 
 if ($stmt->fetch() && password_verify($inData['password'], $storedHash)) 
 {
+	// Storing user info in the session
+	$_SESSION['user_id'] = $id;
+	$_SESSION['first_name'] = $firstName;
+	$_SESSION['last_name'] = $lastName;
+
 	returnWithInfo( $firstName, $lastName, $id);
 }
 else
