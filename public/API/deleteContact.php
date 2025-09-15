@@ -1,30 +1,32 @@
 <?php
+session_start();
 include('./util.php');
 require_once __DIR__ . '/db.php';
 
+if (!isset($_SESSION['user_id'])) {
+    http_response_code(401);
+    echo json_encode(["status"=>"error","message"=>"You must be logged in"]);
+    exit();
+}
+
+$UserID = $_SESSION['user_id'];
+
 $inData = getRequestInfo();
 
-// Check that input exists
-if (!$inData) {
-    http_response_code(400); // Not Found
-    returnWithError("No input data");
-    exit();
-}
-
-// Check required fields
-if (!isset($inData["UserID"]) || !isset($inData["ContactID"])) {
+// Check that ContactID was provided
+if (!isset($inData["ContactID"])) {
     http_response_code(400); // Bad Request
-    returnWithError("Missing UserID or ContactID");
+    returnWithError("Missing ContactID");
     exit();
 }
 
-// Validating UserID and ContactID as integers
-$UserID = filter_var($inData["UserID"], FILTER_VALIDATE_INT);
+
+// Validating ContactID as integers
 $ContactID = filter_var($inData["ContactID"], FILTER_VALIDATE_INT);
 
-if ($UserID === false || $ContactID === false) {
+if ($ContactID === false) {
     http_response_code(400); // Bad Request
-    returnWithError("UserID and ContactID must be valid integers");
+    returnWithError("ContactID must be valid integers");
     exit();
 }
 
@@ -43,6 +45,7 @@ $verifyStmt = $conn->prepare("SELECT ContactID FROM Contacts WHERE ContactID = ?
 $verifyStmt->bind_param("ii", $ContactID, $UserID);
 $verifyStmt->execute();
 $verifyResult = $verifyStmt->get_result();
+
 if (!$verifyResult->fetch_assoc()) {
     http_response_code(404); // Not Found
     returnWithError("No contact found for this user");
@@ -51,7 +54,6 @@ if (!$verifyResult->fetch_assoc()) {
     exit();
 }
 $verifyStmt->close();
-
 
 
 // Prepare DELETE statement to remove only the specific contact for this user

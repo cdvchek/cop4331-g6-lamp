@@ -86,21 +86,6 @@ if ($conn->connect_error)
 
 //------------- Additional Validations ------------------//
 
-// Verify that UserID exists in Users table
-$userCheckStmt = $conn->prepare("SELECT ID FROM Users WHERE ID = ?");
-$userCheckStmt->bind_param("i", $UserID);
-$userCheckStmt->execute();
-if(!$userCheckStmt->get_result()->fetch_assoc()) {
-    http_response_code(400); // Bad Request
-    returnWithError("Invalid UserID");
-    $userCheckStmt->close();
-    $conn->close();
-    exit();
-}
-
-$userCheckStmt->close();
-
-
 // Check for duplicate phone or email for this user
 $stmt = $conn->prepare("SELECT Phone, Email FROM Contacts WHERE UserID = ? AND (Phone = ? OR Email = ?)");
 $stmt->bind_param("iss", $UserID, $Phone, $Email);
