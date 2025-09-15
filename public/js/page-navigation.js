@@ -1,20 +1,31 @@
+// TODO: pages should fade out, the size transition happens, and then the new page fades in
+// TODO: currently the pages fade out and transition size at the same time and then the new page fades in
+// TODO: the key change to do is to have the fade out happen first, then a variable transition time happens
+// TODO: for the size change, and then the new page fades in
+
 const page_container_el = document.getElementById('page-container');
 
 const page_cfg = {
     login: {
         title: "Login",
         element: document.getElementById('login-page'),
-        style: "width: 500px; height: 92vh; max-height: 675px; border-radius: 20px;"
+        style: "width: 500px; height: 92vh; max-height: 675px; border-radius: 20px;",
+        callback: login_callback,
+        callback_error: login_callback_error,
     },
     signup: {
         title: "Signup",
         element: document.getElementById('signup-page'),
-        style: "width: 500px; height: 92vh; max-height: 675px; border-radius: 20px;"
+        style: "width: 500px; height: 92vh; max-height: 675px; border-radius: 20px;",
+        callback: () => {},// signup_callback,
+        callback_error: () => {},// signup_callback_error,
     },
     dashboard: {
         title: "Dashboard",
         element: document.getElementById('dashboard-page'),
-        style: "width: calc(100% - 15px); height: calc(100% - 15px); border-radius: 30px;"
+        style: "width: calc(100% - 15px); height: calc(100% - 15px); border-radius: 30px;",
+        callback: () => {},// dashboard_callback,
+        callback_error: () => {},// dashboard_callback_error,
     }
 }
 
@@ -38,12 +49,22 @@ const open_first_page = () => {
 }
 open_first_page();
 
-const open_page = (e) => {
+const open_page = async (e) => {
+    e.preventDefault();
+
     let target = e.target;
     while (target.getAttribute("data-nav") !== 'true') target = target.parentNode;
 
     const old_page = target.dataset.oldpage;
     const new_page = target.dataset.newpage;
+    
+    const do_callback = target.dataset.docallback;
+    if (do_callback === "true") {
+        const cb_res = await page_cfg[old_page].callback();
+        if (!cb_res.ok) {
+            page_cfg[old_page].callback_error(cb_res.error_params);
+        }
+    }
 
     if (!old_page || !new_page) {
         console.warn("A navigation target was found with no pages in the dataset.");

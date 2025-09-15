@@ -35,7 +35,7 @@
                     <input id="login-remeber-me" type="checkbox">
                     <span>Remember me</span>
                 </div>
-                <button id="login-btn" class="form-submit">Login</button>
+                <button id="login-btn" class="form-submit page-navigation" data-nav="true" data-oldpage="login" data-newpage="dashboard" data-docallback="true">Login</button>
                 <span id="login-error-msg"></span>
                 <div id="login-signup-wrapper" class="form-navigation-wrapper">
                     <span id="login-signup-span" class="form-navigation-span">Don't have a sign in?</span>
@@ -101,6 +101,7 @@
         <div id="dashboard-page" class="page">
         </div>
     </div>
+    <script src="../js/login/login-callback.js"></script>
     <script src="../js/page-navigation.js"></script>
 </body>
 </html>
