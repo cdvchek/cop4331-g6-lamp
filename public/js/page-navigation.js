@@ -1,29 +1,24 @@
-// TODO: pages should fade out, the size transition happens, and then the new page fades in
-// TODO: currently the pages fade out and transition size at the same time and then the new page fades in
-// TODO: the key change to do is to have the fade out happen first, then a variable transition time happens
-// TODO: for the size change, and then the new page fades in
-
 const page_container_el = document.getElementById('page-container');
 
 const page_cfg = {
     login: {
         title: "Login",
         element: document.getElementById('login-page'),
-        style: "width: 500px; height: 92vh; max-height: 675px; border-radius: 20px;",
+        class: "is-login",
         callback: login_callback,
         callback_error: login_callback_error,
     },
     signup: {
         title: "Signup",
         element: document.getElementById('signup-page'),
-        style: "width: 500px; height: 92vh; max-height: 675px; border-radius: 20px;",
+        class: "is-signup",
         callback: () => {},// signup_callback,
         callback_error: () => {},// signup_callback_error,
     },
     dashboard: {
         title: "Dashboard",
         element: document.getElementById('dashboard-page'),
-        style: "width: calc(100% - 15px); height: calc(100% - 15px); border-radius: 30px;",
+        class: "is-dashboard",
         callback: () => {},// dashboard_callback,
         callback_error: () => {},// dashboard_callback_error,
     }
@@ -31,7 +26,7 @@ const page_cfg = {
 
 const open_first_page = () => {
     page_container_el.classList.remove('opening');
-    page_container_el.style = page_cfg.login.style;
+    page_container_el.classList.add(page_cfg.login.class);
 
     document.title = page_cfg.login.title;
     page_cfg.login.element.classList.add('page-active');
@@ -77,7 +72,8 @@ const open_page = async (e) => {
     page_cfg[new_page].element.classList.remove('page-close');
     page_cfg[new_page].element.classList.add('page-active');
 
-    page_container_el.style = page_cfg[new_page].style;
+    page_container_el.classList.remove(page_cfg[old_page].class);
+    page_container_el.classList.add(page_cfg[new_page].class);
 
     document.title = page_cfg[new_page].title;
 }
