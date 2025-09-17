@@ -57,8 +57,8 @@ const signup_callback = async () => {
     const payload = {
         firstName: first_name_signup_el.value.trim(),
         lastName: last_name_signup_el.value.trim(),
-        username: username_login_el.value.trim(),
-        password: password_login_el.value
+        username: username_signup_el.value.trim(),
+        password: password_signup_el.value
     }
 
     const res = await fetch(base_url + "/API/register.php", {
