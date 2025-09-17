@@ -1,12 +1,12 @@
-const big_contact_icon_el = document.getElementById('contact-icon-letter');
-const big_contact_fname = document.getElementById('first-name');
-const big_contact_lname = document.getElementById('last-name');
-const big_contact_email = document.getElementById('email');
-const big_contact_phone = document.getElementById('phone');
+const big_contact_icon_el = document.getElementById('dashboard-contact-icon-letter');
+const big_contact_fname = document.getElementById('dashboard-first-name');
+const big_contact_lname = document.getElementById('dashboard-last-name');
+const big_contact_email = document.getElementById('dashboard-email');
+const big_contact_phone = document.getElementById('dashboard-phone');
 
 const contact_click = (e) => {
     let target = e.target;
-    while (target.getAttribute('class') !== "contact-entry") target = target.parentNode;
+    while (target.getAttribute('class') !== "dashboard-contact-entry") target = target.parentNode;
 
     const first_name = target.getAttribute('data-fname');
     const last_name = target.getAttribute('data-lname');
@@ -24,7 +24,7 @@ const contact_list_el = document.getElementById('contact-list');
 
 const create_contact_el = (first_name, last_name, email, phone) => {
     const contact_li = document.createElement('li');
-    contact_li.setAttribute('class', 'contact-entry');
+    contact_li.setAttribute('class', 'dashboard-contact-entry');
     contact_li.setAttribute('data-fname', first_name);
     contact_li.setAttribute('data-lname', last_name);
     contact_li.setAttribute('data-email', email);
@@ -32,14 +32,14 @@ const create_contact_el = (first_name, last_name, email, phone) => {
     contact_li.addEventListener('click', contact_click);
 
     const contact_icon_div = document.createElement('div');
-    contact_icon_div.setAttribute('class', 'contact-icon');
+    contact_icon_div.setAttribute('class', 'dashboard-contact-icon');
 
     const contact_icon_span = document.createElement('span');
-    contact_icon_span.setAttribute('class', 'contact-icon-letter');
+    contact_icon_span.setAttribute('class', 'dashboard-contact-icon-letter');
     contact_icon_span.textContent = first_name[0];
 
     const contact_name_span = document.createElement('span');
-    contact_name_span.setAttribute('class', 'contact-name');
+    contact_name_span.setAttribute('class', 'dashboard-contact-name');
     contact_name_span.textContent = `${first_name} ${last_name}`;
 
     contact_icon_div.appendChild(contact_icon_span);
@@ -48,8 +48,8 @@ const create_contact_el = (first_name, last_name, email, phone) => {
     contact_list_el.appendChild(contact_li);
 }
 
-const search_input_el = document.getElementById('search-input');
-const empty_search_el = document.getElementById('search-text');
+const search_input_el = document.getElementById('dashboard-search-input');
+const empty_search_el = document.getElementById('dashboard-search-text');
 
 const search_contacts = async (e) => {    
     const query = e.target.value.trim();
