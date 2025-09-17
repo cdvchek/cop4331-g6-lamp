@@ -1,12 +1,12 @@
-const add_contact_menu_open_el = document.getElementById('add-contact');
-const search_wrapper_el = document.getElementById('search-wrapper');
-const first_name_wrapper = document.getElementById('fn-add-wrapper');
-const last_name_wrapper = document.getElementById('ln-add-wrapper');
-const phone_wrapper = document.getElementById('phone-add-wrapper');
-const email_wrapper = document.getElementById('email-add-wrapper');
-const add_contact_btn = document.getElementById('final-add-contact-btn');
-const contact_list_el_add = document.getElementById('contact-list');
-const add_contact_form = document.getElementById('add-contact-form');
+const add_contact_menu_open_el = document.getElementById('dashboard-add-contact');
+const search_wrapper_el = document.getElementById('dashboard-search-wrapper');
+const first_name_wrapper = document.getElementById('dashboard-fn-add-wrapper');
+const last_name_wrapper = document.getElementById('dashboard-ln-add-wrapper');
+const phone_wrapper = document.getElementById('dashboard-phone-add-wrapper');
+const email_wrapper = document.getElementById('dashboard-email-add-wrapper');
+const add_contact_btn = document.getElementById('dashboard-final-add-contact-btn');
+const contact_list_el_add = document.getElementById('dashboard-contact-list');
+const add_contact_form = document.getElementById('dashboard-add-contact-form');
 
 let add_menu_toggle = false;
 
@@ -15,10 +15,10 @@ const toggle_add_menu = () => {
 
     const add_btn_classname = add_menu_toggle ? 'add-open' : '';
     add_contact_menu_open_el.setAttribute('class', add_btn_classname);
-    first_name_wrapper.setAttribute('class', 'add-contact-wrapper ' + add_btn_classname);
-    last_name_wrapper.setAttribute('class', 'add-contact-wrapper ' + add_btn_classname);
-    phone_wrapper.setAttribute('class', 'add-contact-wrapper ' + add_btn_classname);
-    email_wrapper.setAttribute('class', 'add-contact-wrapper ' + add_btn_classname);
+    first_name_wrapper.setAttribute('class', 'dashboard-add-contact-wrapper ' + add_btn_classname);
+    last_name_wrapper.setAttribute('class', 'dashboard-add-contact-wrapper ' + add_btn_classname);
+    phone_wrapper.setAttribute('class', 'dashboard-add-contact-wrapper ' + add_btn_classname);
+    email_wrapper.setAttribute('class', 'dashboard-add-contact-wrapper ' + add_btn_classname);
     add_contact_btn.setAttribute('class', add_btn_classname);
     contact_list_el_add.setAttribute('class', add_btn_classname);
     add_contact_form.setAttribute('class', add_btn_classname);
@@ -47,8 +47,6 @@ const add_contact = async () => {
     const email = email_el.value.trim();
     const user_id = get_user_id();
 
-
-    // TODO: better error handling and get rid of toast
     if (!user_id || Number.isNaN(user_id)) {
         return toastError('You are not logged in (missing UserID).');
     }
