@@ -12,8 +12,8 @@ const page_cfg = {
         title: "Signup",
         element: document.getElementById('signup-page'),
         class: "is-signup",
-        callback: () => {},// signup_callback,
-        callback_error: () => {},// signup_callback_error,
+        callback: signup_callback,
+        callback_error: signup_callback_error,
     },
     dashboard: {
         title: "Dashboard",
