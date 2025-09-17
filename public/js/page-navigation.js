@@ -19,8 +19,8 @@ const page_cfg = {
         title: "Dashboard",
         element: document.getElementById('dashboard-page'),
         class: "is-dashboard",
-        callback: () => {},// dashboard_callback,
-        callback_error: () => {},// dashboard_callback_error,
+        callback: logout_callback,
+        callback_error: logout_callback_error,
     }
 }
 
