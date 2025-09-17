@@ -24,6 +24,11 @@ const page_cfg = {
     }
 }
 
+const adjust_height = () => {
+    const height = page_container_el.scrollHeight;
+    if (height > 675) page_container_el.style.height = "675px";
+}
+
 const open_first_page = () => {
     const logged_in = localStorage.getItem("userId");
     if (logged_in) {
@@ -40,23 +45,26 @@ const open_first_page = () => {
         page_cfg.login.element.classList.add('opening');
 
         setTimeout(() => {
+            page_container_el.classList.remove('til-open-end');
             page_cfg.signup.element.classList.remove('opening');
             page_cfg.login.element.classList.remove('opening');
         }, 400);
     } else {
         page_container_el.classList.remove('opening');
         page_container_el.classList.add(page_cfg.login.class);
-    
+        
         document.title = page_cfg.login.title;
         page_cfg.login.element.classList.add('page-active');
-    
+        
         page_cfg.signup.element.classList.add('page-close');
         page_cfg.signup.element.classList.add('opening');
-    
+        
         page_cfg.dashboard.element.classList.add('page-close');
         page_cfg.dashboard.element.classList.add('opening');
-    
+        
+        adjust_height();
         setTimeout(() => {
+            page_container_el.classList.remove('til-open-end');
             page_cfg.signup.element.classList.remove('opening');
             page_cfg.dashboard.element.classList.remove('opening');
         }, 400);
@@ -99,6 +107,8 @@ const open_page = async (e) => {
     page_container_el.classList.add(page_cfg[new_page].class);
 
     document.title = page_cfg[new_page].title;
+
+    if (new_page !== "dashboard") adjust_height();
 }
 
 const page_nav_els = document.getElementsByClassName('page-navigation');
