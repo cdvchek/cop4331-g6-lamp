@@ -1,7 +1,11 @@
 // Uses element references from login-callback
 const check_remember_me = () => {
+    console.log("running");
+    
     const username = localStorage.getItem('login-username');
     const password = localStorage.getItem('login-password');
+
+    console.log(username, password);
     
     if (username && password) {
         remember_me.checked = true;
