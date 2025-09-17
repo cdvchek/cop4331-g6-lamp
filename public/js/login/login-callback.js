@@ -51,6 +51,8 @@ const login_callback = async () => {
         } else {
             localStorage.removeItem("login-username");
             localStorage.removeItem("login-password");
+            username_login_el.value = "";
+            password_login_el.value = "";
         }
 
         return {
