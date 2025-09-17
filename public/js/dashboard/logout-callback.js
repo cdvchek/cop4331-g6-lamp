@@ -10,6 +10,8 @@ const logout_callback = async () => {
         localStorage.removeItem("firstName");
         localStorage.removeItem("lastName");
 
+        toggle_menu();
+
         return {
             ok: true,
         }
