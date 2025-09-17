@@ -29,10 +29,10 @@ const toggle_add_menu = () => {
 
 add_contact_menu_open_el.addEventListener('click', toggle_add_menu);
 
-const first_name_el = document.getElementById('first-name-add');
-const last_name_el = document.getElementById('last-name-add');
-const phone_el = document.getElementById('phone-add');
-const email_el = document.getElementById('email-add');
+const first_name_el = document.getElementById('dashboard-first-name-add');
+const last_name_el = document.getElementById('dashboard-last-name-add');
+const phone_el = document.getElementById('dashboard-phone-add');
+const email_el = document.getElementById('dashboard-email-add');
 
 const isNonEmpty = s => typeof s === 'string' && s.trim().length > 0;
 const looksLikeEmail = s => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
