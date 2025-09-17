@@ -67,6 +67,10 @@ body {
     pointer-events: none;
 }
 
+#dashboard-page {
+    display: flex;
+}
+
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation: none !important;

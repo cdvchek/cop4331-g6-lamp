@@ -1,0 +1,70 @@
+#dashboard-contact-viewport {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    width: calc(100% - 453px)
+}
+
+#dashboard-image-name-div {
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#dashboard-contact-icon {
+    margin-top: 80px;
+    width: 160px;
+    height: 160px;
+    background-color:rgb(17, 139, 180);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#dashboard-contact-icon-letter {
+    font-size: 64px;
+    color: white;
+}
+
+#dashboard-name-div {
+    width: 750px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.dashboard-name {
+    font-weight: bold;
+    font-size: 35px;
+}
+
+#dashboard-first-name {
+    margin-right: 20px;
+}
+
+.dashboard-contact-info-div {
+    width: 80%; height: 90px;
+    border-radius: 20px;
+    max-width: 1000px;
+    box-shadow: 0 0 10px 3px rgb(230, 230, 230);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-contact-info-icon {
+    width: 40px;
+    height: 40px;
+    margin-left: 25px;
+    margin-right: 25px;
+    color:rgb(17, 139, 180);
+}
+
+.dashboard-contact-info-span {
+    font-size: 20px;
+}

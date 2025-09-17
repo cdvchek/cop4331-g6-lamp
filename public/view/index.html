@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../css/login/form.css">
     <link rel="stylesheet" href="../css/login/input.css">
     <link rel="stylesheet" href="../css/dashboard/contact-selector.css">
+    <link rel="stylesheet" href="../css/dashboard/viewport.css">
+    <link rel="stylesheet" href="../css/dashboard/menu.css">
 </head>
 <body>
     <div id="page-container" class="opening">
@@ -189,14 +191,15 @@
                     <span></span><span></span><span></span>
                 </button>
                 <div id="dashboard-menu">
-                    <div class="dashboard-menu-page" id="dashboard-menu-main" data-width="150px" data-height="180px">
-                        <button id="dashboard-logout-btn">Logout</button>
-                    </div>
+                    <button id="dashboard-edit-contact-btn" class="dashboard-menu-btn">Edit Contact</button>
+                    <button id="dashboard-logout-btn" class="dashboard-menu-btn">Logout</button>
                 </div>
             </div>
         </div>
     </div>
+    <script src="../js/util.js"></script>
     <script src="../js/login/login-callback.js"></script>
     <script src="../js/page-navigation.js"></script>
+    <script src="../js/dashboard/menu-toggle.js"></script>
 </body>
 </html>

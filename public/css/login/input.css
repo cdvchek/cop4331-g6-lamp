@@ -23,3 +23,7 @@
     padding-left: 8px;
     height: 100%;
 }
+
+.bad-form-input::placeholder {
+    color: rgb(246, 70, 70);
+}

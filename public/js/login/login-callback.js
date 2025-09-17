@@ -4,7 +4,7 @@ const login_btn_el = document.getElementById('login-btn');
 const remember_me_el = document.getElementById('login-remember-me');
 const error_msg_el = document.getElementById('login-error-msg');
 
-const login_callback = async () => {
+const login_callback = async () => {    
     // validating name and password
     let bad_username_input = false;
     let bad_password_input = false;
@@ -45,7 +45,7 @@ const login_callback = async () => {
         localStorage.setItem("firstName", data.data.firstName);
         localStorage.setItem("lastName", data.data.lastName);
 
-        if (remember_me.checked) {
+        if (remember_me_el.checked) {
             localStorage.setItem("login-username", payload.login);
             localStorage.setItem("login-password", payload.password);
         } else {
@@ -58,7 +58,7 @@ const login_callback = async () => {
         }
     } else {
         return {
-            ok: true,
+            ok: false,
             error_params: {
                 code: "incorrect_input",
                 incorrect_input: {
@@ -74,11 +74,11 @@ const login_callback_error = (error_params) => {
         case "bad_input":
             if (error_params.bad_input.bad_username) {
                 username_login_el.placeholder = "Username - Required";
-                username_login_el.setAttribute('class', "login-input bad-login-input");
+                username_login_el.setAttribute('class', "form-input bad-form-input");
             }
             if (error_params.bad_input.bad_password) {
                 password_login_el.placeholder = "Password - Required";
-                password_login_el.setAttribute('class', "login-input bad-login-input");
+                password_login_el.setAttribute('class', "form-input bad-form-input");
             }
             break;
         

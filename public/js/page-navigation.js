@@ -56,8 +56,11 @@ const open_page = async (e) => {
     const do_callback = target.dataset.docallback;
     if (do_callback === "true") {
         const cb_res = await page_cfg[old_page].callback();
+        console.log(cb_res);
+        
         if (!cb_res.ok) {
             page_cfg[old_page].callback_error(cb_res.error_params);
+            return;
         }
     }
 
