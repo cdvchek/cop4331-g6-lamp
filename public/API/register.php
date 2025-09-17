@@ -1,4 +1,8 @@
 <?php
+header('Content-Type: application/json; charset=utf-8');
+ini_set('display_errors', 0);    // don't print HTML errors to the client
+ini_set('log_errors', 1);        // log them instead
+error_reporting(E_ALL);
 // Includes the utility functions for JSON handling and DB connection
 include('./util.php');
 require_once __DIR__ . '/db.php';
@@ -64,18 +68,6 @@ if ($conn->connect_error) {
     exit();
 }
 
-// Check if username already exists
-$stmt = $conn->prepare("SELECT 1 FROM Users WHERE BINARY Username = ? LIMIT 1");
-$stmt->bind_param("s", $Username);
-if (!$stmt->execute()) {
-    if ($conn->errno === 1062) {
-        http_response_code(409);
-        returnWithError("Username already taken");
-    }
-}
-$result = $stmt->get_result();
-$stmt->close();
-
 // Hashing the password before storing
 $hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
 // PASSWORD_DEFAULT uses the bcrypt algorithm by default
@@ -100,9 +92,14 @@ if ($insertStmt->execute()) {
     http_response_code(201); // Created successfully registered
     returnWithInfo($FName, $LName, $conn->insert_id);
 } else {
-    // Else, Something went wrong with the insert
-    http_response_code(500);
-    returnWithError("Failed to register user: " . $insertStmt->error);
+    if ($conn->errno === 1062) {
+        http_response_code(409);
+        returnWithError("Username already taken");
+    } else {
+        // Else, Something went wrong with the insert
+        http_response_code(500);
+        returnWithError("Failed to register user: " . $insertStmt->error);
+    }
 }
 
 // Closing the statement and connection
