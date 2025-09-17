@@ -12,6 +12,12 @@ const logout_callback = async () => {
 
         toggle_menu();
 
+        big_contact_icon_el.textContent = "";
+        big_contact_fname.textContent = "-- -- --";
+        big_contact_lname.textContent = "-- -- --";
+        big_contact_email.textContent = "-- -- --";
+        big_contact_phone.textContent = "-- -- --";
+
         return {
             ok: true,
         }
