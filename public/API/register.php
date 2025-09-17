@@ -67,17 +67,13 @@ if ($conn->connect_error) {
 // Check if username already exists
 $stmt = $conn->prepare("SELECT 1 FROM Users WHERE BINARY Username = ? LIMIT 1");
 $stmt->bind_param("s", $Username);
-$stmt->execute();
-$result = $stmt->get_result();
-
-// If Username is taken, we are returning an error
-$stmt->store_result();
-if ($result->num_rows > 0) {
-    $stmt->close();
-    http_response_code(409); // Conflict
-    returnWithError("Username already taken");
-    exit();
+if (!$stmt->execute()) {
+    if ($conn->errno === 1062) {
+        http_response_code(409);
+        returnWithError("Username already taken");
+    }
 }
+$result = $stmt->get_result();
 $stmt->close();
 
 // Hashing the password before storing
