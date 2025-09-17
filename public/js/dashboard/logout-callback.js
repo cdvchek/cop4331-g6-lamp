@@ -18,6 +18,12 @@ const logout_callback = async () => {
         big_contact_email.textContent = "-- -- --";
         big_contact_phone.textContent = "-- -- --";
 
+        for (let i = contact_list_el.children.length - 1; i >= 0; i--) {
+            contact_list_el.children[i].remove();
+        }
+
+        search_input_el.value = "";
+
         return {
             ok: true,
         }
