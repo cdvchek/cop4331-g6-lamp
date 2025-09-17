@@ -89,6 +89,12 @@ try {
     
     // Executing the insert and checking for success
     if ($insertStmt->execute()) {
+        // Auto-login: start sesion right after successful register
+        session_start();
+        $_SESSION["user_id"] = $conn->insert_id;
+        $_SESSION["first_name"] = $FName;
+        $_SESSION["last_name"] = $LName;
+
         // Success: returns the new user's info via POST
         http_response_code(201); // Created successfully registered
         returnWithInfo($FName, $LName, $conn->insert_id);
@@ -101,6 +107,7 @@ try {
     // Closing the statement and connection
     $insertStmt->close();
     $conn->close();
+    
 } catch (mysqli_sql_exception $e) {
     if ((int)$e->getCode() === 1062) {
         http_response_code(409);
