@@ -25,22 +25,42 @@ const page_cfg = {
 }
 
 const open_first_page = () => {
-    page_container_el.classList.remove('opening');
-    page_container_el.classList.add(page_cfg.login.class);
+    const logged_in = localStorage.getItem("userId");
+    if (logged_in) {
+        page_container_el.classList.remove('opening');
+        page_container_el.classList.add(page_cfg.dashboard.class);
 
-    document.title = page_cfg.login.title;
-    page_cfg.login.element.classList.add('page-active');
+        document.title = page_cfg.dashboard.title;
+        page_cfg.dashboard.element.classList.add('page-active');
 
-    page_cfg.signup.element.classList.add('page-close');
-    page_cfg.signup.element.classList.add('opening');
+        page_cfg.signup.element.classList.add('page-close');
+        page_cfg.signup.element.classList.add('opening');
 
-    page_cfg.dashboard.element.classList.add('page-close');
-    page_cfg.dashboard.element.classList.add('opening');
+        page_cfg.login.element.classList.add('page-close');
+        page_cfg.login.element.classList.add('opening');
 
-    setTimeout(() => {
-        page_cfg.signup.element.classList.remove('opening');
-        page_cfg.dashboard.element.classList.remove('opening');
-    }, 400);
+        setTimeout(() => {
+            page_cfg.signup.element.classList.remove('opening');
+            page_cfg.login.element.classList.remove('opening');
+        }, 400);
+    } else {
+        page_container_el.classList.remove('opening');
+        page_container_el.classList.add(page_cfg.login.class);
+    
+        document.title = page_cfg.login.title;
+        page_cfg.login.element.classList.add('page-active');
+    
+        page_cfg.signup.element.classList.add('page-close');
+        page_cfg.signup.element.classList.add('opening');
+    
+        page_cfg.dashboard.element.classList.add('page-close');
+        page_cfg.dashboard.element.classList.add('opening');
+    
+        setTimeout(() => {
+            page_cfg.signup.element.classList.remove('opening');
+            page_cfg.dashboard.element.classList.remove('opening');
+        }, 400);
+    }
 }
 open_first_page();
 
