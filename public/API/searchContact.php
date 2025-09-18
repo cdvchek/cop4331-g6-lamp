@@ -33,7 +33,7 @@ if ($conn->connect_error) {
 }
 
 // Start building SQL query dynamically
-$sql = 'SELECT ContactID, FName, LName, Phone, Email FROM Contacts WHERE UserID = ?';
+$sql = 'SELECT ID, FName, LName, Phone, Email FROM Contacts WHERE UserID = ?';
 $params = [$UserID];
 $types = 'i';
 
