@@ -13,20 +13,20 @@ $UserID = $_SESSION['user_id'];
 
 $inData = getRequestInfo();
 
-// Check that ContactID was provided
-if (!isset($inData["ContactID"])) {
+// Check that ID was provided
+if (!isset($inData["ID"])) {
     http_response_code(400); // Bad Request
-    returnWithError("Missing ContactID");
+    returnWithError("Missing ID");
     exit();
 }
 
 
-// Validating ContactID as integers
-$ContactID = filter_var($inData["ContactID"], FILTER_VALIDATE_INT);
+// Validating ID as integers
+$ID = filter_var($inData["ID"], FILTER_VALIDATE_INT);
 
-if ($ContactID === false) {
+if ($ID === false) {
     http_response_code(400); // Bad Request
-    returnWithError("ContactID must be valid integers");
+    returnWithError("ID must be valid integers");
     exit();
 }
 
@@ -41,8 +41,8 @@ if ($conn->connect_error) {
 }
 
 // Verify that the contact belongs to the user
-$verifyStmt = $conn->prepare("SELECT ContactID FROM Contacts WHERE ContactID = ? AND UserID = ?");
-$verifyStmt->bind_param("ii", $ContactID, $UserID);
+$verifyStmt = $conn->prepare("SELECT ID FROM Contacts WHERE ID = ? AND UserID = ?");
+$verifyStmt->bind_param("ii", $ID, $UserID);
 $verifyStmt->execute();
 $verifyResult = $verifyStmt->get_result();
 
@@ -57,8 +57,8 @@ $verifyStmt->close();
 
 
 // Prepare DELETE statement to remove only the specific contact for this user
-$stmt = $conn->prepare("DELETE FROM Contacts WHERE ContactID = ? AND UserID = ?");
-$stmt->bind_param("ii", $ContactID, $UserID);
+$stmt = $conn->prepare("DELETE FROM Contacts WHERE ID = ? AND UserID = ?");
+$stmt->bind_param("ii", $ID, $UserID);
 
 // Execute and return response
 if ($stmt->execute()) {
