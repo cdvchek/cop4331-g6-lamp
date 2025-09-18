@@ -68,6 +68,7 @@ const search_contacts = async (e) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ UserID: get_user_id(), query: query.toLowerCase() })
     });
+    if (res[0] == '<') return console.log(res);
     const json = await res.json();
 
     console.log("Response:", json);
