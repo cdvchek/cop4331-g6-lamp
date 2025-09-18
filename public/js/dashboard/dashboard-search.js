@@ -53,6 +53,8 @@ const empty_search_el = document.getElementById('dashboard-search-text');
 
 const search_contacts = async (e) => {    
     const query = e.target.value.trim();
+    console.log("Query:", query);
+    
     
     for (let i = contact_list_el.children.length - 1; i >= 0; i--) {
         contact_list_el.children[i].remove();
@@ -67,6 +69,8 @@ const search_contacts = async (e) => {
         body: JSON.stringify({ UserID: get_user_id(), FName: query.toLowerCase(), LName: query.toLowerCase() })
     });
     const json = await res.json();
+
+    console.log("Response:", json);
 
     if (json.status === "success") {
         for (let i = 0; i < json.data.length; i++) {
