@@ -6,14 +6,14 @@ include('./util.php');
 require_once __DIR__ . '/db.php';
 
 //Checking to see if user is logged in
-// if(!isset($_SESSION["user_id"])){
-//     http_response_code(401);
-//     echo json_encode(["status" => "error", "message" => "you must be logged in"]);
-//     exit();
-// }
+if(!isset($_SESSION["user_id"])){
+    http_response_code(401);
+    echo json_encode(["status" => "error", "message" => "you must be logged in"]);
+    exit();
+}
 
 // Use session user_id instead of sending it from client
-//$UserID = $_SESSION["user_id"];
+$UserID = $_SESSION["user_id"];
 
 
 // Getting the JSON input from the Client
@@ -90,7 +90,6 @@ if ($conn->connect_error)
 
 // Check for duplicate phone or email for this user
 $stmt = $conn->prepare("UPDATE Contacts SET FName = ?, LName = ?, Phone = ?, Email = ? WHERE ID = ? AND UserID = ?;");
-$UserID = 1;
 $stmt->bind_param("ssssii", $FName, $LName, $Phone, $Email, $ContactID, $UserID);
 
 
