@@ -18,37 +18,37 @@ if (!isset($_SESSION["user_id"])) {
     respond(["status" => "error", "message" => "You must be logged in"]);
 }
 
-$UserID = $_SESSION["user_id"]; // ✅ use session instead of input
-
+$UserID = $_SESSION["user_id"];
 $inData = getRequestInfo() ?? [];
 
-// Accept either casing from client
-$FName = isset($inData['FName']) ? trim($inData['FName']) : '';
-$LName = isset($inData['LName']) ? trim($inData['LName']) : '';
+if ($UserId != $inData['UserID']) {
+    http_response_code(400);
+    returnWithError("Session ID does not match client ID");
+}
 
+$query = isset($inData['query']) ? trim($inData['query']) : '';
 
 $conn = get_db_connection();
 if ($conn->connect_error) {
   respond(["status" => "error", "message" => $conn->connect_error]);
 }
 
-// Start building SQL query dynamically
-$sql = 'SELECT ID, FName, LName, Phone, Email FROM Contacts WHERE UserID = ?';
-$params = [$UserID];
-$types = 'i';
-
-if ($FName !== '') {
-    $sql .= ' AND FName = ?';
-    $types .= 's';
-    $params[] = $FName;
-}
-if ($LName !== '') {
-    $sql .= ' AND LName = ?';
-    $types .= 's';
-    $params[] = $LName;
+if ($query === '') {
+    // No query? Return empty result set
+    returnWithInfo([]);   // <-- whatever your helper function is
+    exit();
 }
 
-$sql .= ' ORDER BY LName, FName';
+$sql = 'SELECT ID, FName, LName, Phone, Email 
+        FROM Contacts 
+        WHERE UserID = ? 
+        AND (FName LIKE ? OR LName LIKE ? OR Phone LIKE ? OR Email LIKE ?)
+        ORDER BY LName, FName';
+
+$likeQuery = '%' . $query . '%';
+
+$params = [$UserID, $likeQuery, $likeQuery, $likeQuery, $likeQuery];
+$types  = 'issss';
 
 //-------------------------------------------//
 // Commented Code below: if one of the required query (Fname or Lname) is left empty
@@ -89,3 +89,28 @@ if ($result) {
 }
 
 respond(["status" => "success", "data" => $data]);
+
+// Helper functions for JSON response
+function returnWithError( $err )
+{
+	$response = [
+		"status" => "error",
+		"message" => $err,
+    ];
+	sendResultInfoAsJson( json_encode($response) );
+}
+
+function returnWithInfo( $firstName, $lastName, $id )
+{
+	$response = [
+		"status" => "success",
+		"message" => "successfully registered",
+		"data" => [
+			"id" => $id,
+			"firstName" => $firstName,
+			"lastName" => $lastName
+		]
+    ];
+    
+	sendResultInfoAsJson( json_encode($response) );
+}

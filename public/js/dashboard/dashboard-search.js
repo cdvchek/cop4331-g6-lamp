@@ -66,7 +66,7 @@ const search_contacts = async (e) => {
     const res = await fetch(`${base_url}/API/searchContact.php`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ UserID: get_user_id(), FName: query.toLowerCase(), LName: query.toLowerCase() })
+        body: JSON.stringify({ UserID: get_user_id(), query: query.toLowerCase() })
     });
     const json = await res.json();
 
