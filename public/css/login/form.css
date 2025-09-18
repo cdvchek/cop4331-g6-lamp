@@ -47,5 +47,9 @@
 
 .form-navigation-span {
     margin-right: 5px;
+}
+
+.pre-login-nav {
     cursor: pointer;
+    color: rgb(0, 0, 190);
 }
