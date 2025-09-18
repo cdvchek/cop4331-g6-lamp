@@ -33,7 +33,7 @@
 }
 
 .form-submit:hover {
-    background-color: rgb(14, 120, 156);
+    background-color: rgb(10, 95, 124);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
@@ -47,5 +47,9 @@
 
 .form-navigation-span {
     margin-right: 5px;
+}
+
+.pre-login-nav {
     cursor: pointer;
+    color: rgb(0, 0, 190);
 }

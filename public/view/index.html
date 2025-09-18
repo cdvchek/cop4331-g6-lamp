@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A basic lamp stack website that was built for the small project in COP4331 at UCF.">
     <title></title>
     <link rel="stylesheet" href="../css/page.css">
     <link rel="stylesheet" href="../css/login/form.css">
@@ -35,14 +36,14 @@
                     <input id="login-password-input" class="form-input" type="password" placeholder="Password">
                 </div>
                 <div id="login-remember-me-wrapper">
-                    <input id="login-remember-me" type="checkbox">
+                    <input aria-label="remember-me" id="login-remember-me" type="checkbox">
                     <span>Remember me</span>
                 </div>
                 <button id="login-btn" class="form-submit page-navigation" data-nav="true" data-oldpage="login" data-newpage="dashboard" data-docallback="true">Login</button>
                 <span id="login-error-msg"></span>
                 <div id="login-signup-wrapper" class="form-navigation-wrapper">
                     <span id="login-signup-span" class="form-navigation-span">Don't have a sign in?</span>
-                    <a id="login-signup-btn" class="page-navigation" data-oldpage="login" data-newpage="signup" data-nav="true">Sign up now</a>
+                    <a id="login-signup-btn" class="page-navigation pre-login-nav" data-oldpage="login" data-newpage="signup" data-nav="true">Sign up now</a>
                 </div>
             </form>
         </div>
@@ -97,7 +98,7 @@
                 <span id="signup-error-msg"></span>
                 <div id="signup-login-wrapper" class="form-navigation-wrapper">
                     <span id="signup-login-span" class="form-navigation-span">Already have a login?</span>
-                    <a id="signup-login-btn" class="page-navigation" data-oldpage="signup" data-newpage="login" data-nav="true">Login</a>
+                    <a id="signup-login-btn" class="page-navigation pre-login-nav" data-oldpage="signup" data-newpage="login" data-nav="true">Login</a>
                 </div>
             </form>
         </div>
