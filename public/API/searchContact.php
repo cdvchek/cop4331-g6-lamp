@@ -34,8 +34,7 @@ if ($conn->connect_error) {
 }
 
 if ($query === '') {
-    // No query? Return empty result set
-    returnWithInfo([]);   // <-- whatever your helper function is
+    returnWithInfo([]);
     exit();
 }
 
@@ -100,16 +99,12 @@ function returnWithError( $err )
 	sendResultInfoAsJson( json_encode($response) );
 }
 
-function returnWithInfo( $firstName, $lastName, $id )
+function returnWithInfo( $data )
 {
 	$response = [
 		"status" => "success",
 		"message" => "successfully registered",
-		"data" => [
-			"id" => $id,
-			"firstName" => $firstName,
-			"lastName" => $lastName
-		]
+		"data" => $data
     ];
     
 	sendResultInfoAsJson( json_encode($response) );
