@@ -21,7 +21,7 @@ if (!isset($_SESSION["user_id"])) {
 $UserID = $_SESSION["user_id"];
 $inData = getRequestInfo() ?? [];
 
-if ($UserId != $inData['UserID']) {
+if ($UserID != $inData['UserID']) {
     http_response_code(400);
     returnWithError("Session ID does not match client ID");
 }
