@@ -6,7 +6,13 @@ const email_input_el = document.getElementById('dashboard-email-input-edit');
 const phone_input_el = document.getElementById('dashboard-phone-input-edit');
 
 let edit_mode = false;
-const toggle_edit_mode = () => {
+const toggle_edit_mode = (e) => {
+    const target = e.target;
+    while (target.getAttribute('data-edit') !== 'true') target = target.parentNode;
+    const button = target.getAttribute('data-edit-source');
+
+    if (button === "menu-edit" && edit_mode) return;
+    
     edit_mode = !edit_mode;
 
     if (edit_mode) toggle_menu();
