@@ -6,25 +6,14 @@ const lname_input_el = document.getElementById('dashboard-lname-input-edit');
 const email_input_el = document.getElementById('dashboard-email-input-edit');
 const phone_input_el = document.getElementById('dashboard-phone-input-edit');
 
-let edit_mode = false;
-const toggle_edit_mode = (e) => {
-    const target = e.target;
-    while (target.getAttribute('data-edit') !== 'true') target = target.parentNode;
-    const button = target.getAttribute('data-edit-source');
+const clear_edit_inputs = () => {
+    fname_input_el.value = "";
+    lname_input_el.value = "";
+    email_input_el.value = "";
+    phone_input_el.value = "";
+}
 
-    if (button === "menu-edit" && edit_mode) return toggle_menu();
-    if (button === "menu-edit" && selected_contact_id === "") return toggle_menu();
-    
-    if (button === "logout") {
-        edit_mode = false;
-        fname_input_el.value = "";
-        lname_input_el.value = "";
-        email_input_el.value = "";
-        phone_input_el.value = "";
-    } else edit_mode = !edit_mode;
-
-    if (edit_mode) toggle_menu();
-
+const switch_span_inputs = (edit_mode) => {
     const span_display = edit_mode ? "none" : "block";
     const input_display = edit_mode ? "block" : "none";
     
@@ -37,12 +26,32 @@ const toggle_edit_mode = (e) => {
     lname_input_el.style.display = input_display;
     email_input_el.style.display = input_display;
     phone_input_el.style.display = input_display;
+}
+
+const set_edit_inputs = () => {
+    fname_input_el.value = big_contact_fname.textContent;
+    lname_input_el.value = big_contact_lname.textContent;
+    email_input_el.value = big_contact_email.textContent;
+    phone_input_el.value = big_contact_phone.textContent;
+}
+
+let edit_mode = false;
+const toggle_edit_mode = (e) => {
+    const target = e.target;
+    while (target.getAttribute('data-edit') !== 'true') target = target.parentNode;
+    const button = target.getAttribute('data-edit-source');
+
+    if (button === "menu-edit" && edit_mode) return toggle_menu();
+    if (button === "menu-edit" && selected_contact_id === "") return toggle_menu();
+    
+    edit_mode = (button === "logout") ? false : !edit_mode;
+
+    clear_edit_inputs();
+    switch_span_inputs(edit_mode);
 
     if (edit_mode) {
-        fname_input_el.value = big_contact_fname.textContent;
-        lname_input_el.value = big_contact_lname.textContent;
-        email_input_el.value = big_contact_email.textContent;
-        phone_input_el.value = big_contact_phone.textContent;
+        set_edit_inputs();
+        toggle_menu();
     }
 }
 
