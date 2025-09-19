@@ -69,11 +69,13 @@
     font-size: 20px;
 }
 
-#dashboard-lname-input-edit {
-    margin-left: 20px;
+#dashboard-fname-input-edit,
+#dashboard-email-input-edit,
+#dashboard-phone-input-edit {
+    margin-right: 20px;
 }
 
-.dashboard-contact-edit {
+.dashboard-contact-edit, .dashboard-contact-edit:focus {
     display: none;
     border: 1px rgb(216, 216, 216) solid;
     border-radius: 20px;
@@ -81,4 +83,5 @@
     background-color: white;
     text-align: center;
     flex: 1;
+    outline: none;
 }
