@@ -100,7 +100,7 @@
     text-align: center;
     color: white;
     border: none;
-    border: 20px;
+    border-radius: 20px;
 }
 
 #dashboard-cancel-btn {
