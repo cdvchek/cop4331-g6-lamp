@@ -22,7 +22,7 @@ if(isset($_SESSION['user_id'])){
 }
 else{
     // There Is NO Session -> not authorized
-    respond(401, [
+    respond(200, [
         'status'=> 'error',
         'message'=> 'Unauthorized, no active session'
     ]);
