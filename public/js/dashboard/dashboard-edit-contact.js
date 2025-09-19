@@ -71,13 +71,13 @@ const sync_contact_icon_letter = (e) => {
     const icon_letter = value.length > 0 ? value[0] : "";
 
     big_contact_icon_el.textContent = icon_letter;
-    // TODO: move this to save_contact // selected_contact_el.children[0].children[0].textContent = icon_letter;
 }
 
 fname_input_el.addEventListener('input', sync_contact_icon_letter);
 
 const save_contact = async (e) => {
-
+    
+    // TODO: make this fit in save_contact // selected_contact_el.children[0].children[0].textContent = icon_letter;
     toggle_edit_mode(e);
 }
 
