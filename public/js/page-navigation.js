@@ -29,9 +29,24 @@ const adjust_height = () => {
     if (height > 675) page_container_el.style.height = "675px";
 }
 
-const open_first_page = () => {
-    const logged_in = localStorage.getItem("userId");
-    if (logged_in) {
+const check_session = async () => {
+    const res = await fetch(base_url + "/API/session.php", {
+        method: "GET",
+        headers: {"Content-Type": "application/json"}
+    });
+    const data = await res.json();
+
+    if (data.status === "success") return true;
+    else {
+        localStorage.removeItem("userId");
+        localStorage.removeItem("firstName");
+        localStorage.removeItem("lastName");
+        return false;
+    }
+}
+
+const open_first_page = async () => {
+    if (await check_session()) {
         page_container_el.classList.remove('opening');
         page_container_el.classList.add(page_cfg.dashboard.class);
 
