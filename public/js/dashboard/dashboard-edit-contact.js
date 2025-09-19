@@ -94,6 +94,7 @@ const save_contact = async (e) => {
     if (data.status == "success") {
         toggle_edit_mode(e);
 
+        big_contact_icon_el.textContent = payload.FName[0];
         big_contact_fname.textContent = payload.FName;
         big_contact_lname.textContent = payload.LName;
         big_contact_email.textContent = payload.Email;
