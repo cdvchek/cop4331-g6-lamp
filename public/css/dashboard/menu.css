@@ -45,7 +45,7 @@
     flex-direction: column;
     position: fixed;
     width: 150px;
-    height: 120px;
+    height: 180px;
     top: 100px;
     right: 38px;
     background-color: rgb(242, 242, 242);
@@ -85,4 +85,8 @@
     color: rgb(193, 68, 68);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+}
+
+#dashboard-delete-contact-btn {
+    color: rgb(193, 68, 68);
 }
