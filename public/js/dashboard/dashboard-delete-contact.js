@@ -18,12 +18,14 @@ const delete_contact = async (e) => {
             toggle_menu();
 
             big_contact_icon_el.textContent = "";
-            big_contact_fname.textContent = "";
-            big_contact_lname.textContent = "";
-            big_contact_email.textContent = "";
-            big_contact_phone.textContent = "";
+            big_contact_fname.textContent = "-- -- --";
+            big_contact_lname.textContent = "-- -- --";
+            big_contact_email.textContent = "-- -- --";
+            big_contact_phone.textContent = "-- -- --";
 
             selected_contact_el.remove();
+            selected_contact_el = null;
+            selected_contact_id = "";
         } else {
             console.warn(data.status, data.message);
         }
