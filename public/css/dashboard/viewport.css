@@ -85,3 +85,24 @@
     flex: 1;
     outline: none;
 }
+
+#edit-cancel-save-btns-wrapper {
+    width: 80%;
+    height: 40px;
+}
+
+.dashboard-edit-btns {
+    height: 100%;
+    width: 150px;
+    text-align: center;
+    color: white;
+    border: none;
+}
+
+#dashboard-cancel-btn {
+    background-color: rgb(17, 139, 180);
+}
+
+#dashboard-save-btn {
+    background-color: rgb(193, 68, 68);
+}
