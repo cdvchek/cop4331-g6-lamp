@@ -101,6 +101,12 @@
     color: white;
     border: none;
     border-radius: 20px;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+.dashboard-edit-btns.edit {
+    opacity: 1;
 }
 
 #dashboard-cancel-btn {
