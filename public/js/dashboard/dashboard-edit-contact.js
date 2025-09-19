@@ -21,10 +21,7 @@ const toggle_edit_mode = (e) => {
         lname_input_el.value = "";
         email_input_el.value = "";
         phone_input_el.value = "";
-        return;
-    }
-
-    edit_mode = !edit_mode;
+    } else edit_mode = !edit_mode;
 
     if (edit_mode) toggle_menu();
 
