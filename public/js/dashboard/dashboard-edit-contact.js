@@ -76,14 +76,39 @@ const sync_contact_icon_letter = (e) => {
 fname_input_el.addEventListener('input', sync_contact_icon_letter);
 
 const save_contact = async (e) => {
-    // hit route to edit the contact
-    // on success
-        // toggle the edit mode
-        // change the big spans
-        // change the little icon
-        // change the little spans
-    // TODO: make this fit in save_contact // selected_contact_el.children[0].children[0].textContent = icon_letter;
-    toggle_edit_mode(e);
+    const payload = {
+        ContactID: selected_contact_id,
+        FName: fname_input_el.value.trim(),
+        LName: lname_input_el.value.trim(),
+        Phone: phone_input_el.value.trim(),
+        Email: email_input_el.value.trim(),
+    };
+
+    const res = await fetch(base_url + "/API/editContact.php", {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+
+    if (data.status == "success") {
+        toggle_edit_mode(e);
+
+        big_contact_fname.textContent = payload.FName;
+        big_contact_lname.textContent = payload.LName;
+        big_contact_email.textContent = payload.Email;
+        big_contact_phone.textContent = payload.Phone;
+
+        selected_contact_el.children[0].children[0].textContent = payload.FName[0];
+        selected_contact_el.setAttribute('data-fname', payload.FName);
+        selected_contact_el.setAttribute('data-lname', payload.LName);
+        selected_contact_el.setAttribute('data-email', payload.Email);
+        selected_contact_el.setAttribute('data-phone', payload.Phone);
+
+        selected_contact_el.children[1].textContent = `${payload.FName} ${payload.LName}`;
+    } else {
+        console.warn(data.status, data.message);
+    }
 }
 
 save_btn_el.addEventListener('click', save_contact);

@@ -1,6 +1,5 @@
 <?php
 session_start();
-// TODO: implement session, get userID with session
 
 include('./util.php');
 require_once __DIR__ . '/db.php';
