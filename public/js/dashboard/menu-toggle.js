@@ -18,3 +18,17 @@ const toggle_menu = () => {
 }
 
 menu_toggle_el.addEventListener('click', toggle_menu);
+
+const close_menu_on_outside_click = (e) => {
+    if (menu_open && !menu_el.contains(e.target) && !hamburger_menu_el.contains(e.target)) {
+        menu_open = false;
+
+        for (let i = 0; i < hamburger_span_els.length; i++) {
+            const span_el = hamburger_span_els[i];
+            span_el.setAttribute('class', ''); 
+        }
+        menu_el.setAttribute('class', '');
+    }
+}
+
+document.addEventListener('click', close_menu_on_outside_click);
