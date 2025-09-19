@@ -89,6 +89,9 @@
 #dashboard-edit-cancel-save-btns-wrapper {
     width: 80%;
     height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .dashboard-edit-btns {
@@ -97,10 +100,12 @@
     text-align: center;
     color: white;
     border: none;
+    border: 20px;
 }
 
 #dashboard-cancel-btn {
     background-color: rgb(17, 139, 180);
+    margin-right: 20px;
 }
 
 #dashboard-save-btn {
