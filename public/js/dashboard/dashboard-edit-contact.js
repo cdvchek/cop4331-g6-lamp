@@ -11,8 +11,9 @@ const toggle_edit_mode = (e) => {
     while (target.getAttribute('data-edit') !== 'true') target = target.parentNode;
     const button = target.getAttribute('data-edit-source');
 
-    if (button === "menu-edit" && edit_mode) return;
-    
+    if (button === "menu-edit" && edit_mode) return toggle_menu();
+    if (button === "menu-edit" && selected_contact_id === "") return toggle_menu();
+
     edit_mode = !edit_mode;
 
     if (edit_mode) toggle_menu();

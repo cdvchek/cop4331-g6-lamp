@@ -4,15 +4,19 @@ const big_contact_lname = document.getElementById('dashboard-last-name');
 const big_contact_email = document.getElementById('dashboard-email');
 const big_contact_phone = document.getElementById('dashboard-phone');
 
+let selected_contact_id = "";
+
 const contact_click = (e) => {
     let target = e.target;
     while (target.getAttribute('class') !== "dashboard-contact-entry") target = target.parentNode;
 
+    const id = target.getAttribute('data-id');
     const first_name = target.getAttribute('data-fname');
     const last_name = target.getAttribute('data-lname');
     const email = target.getAttribute('data-email');
     const phone = target.getAttribute('data-phone');
 
+    selected_contact_id = id;
     big_contact_icon_el.textContent = first_name[0];
     big_contact_fname.textContent = first_name;
     big_contact_lname.textContent = last_name;
@@ -22,9 +26,10 @@ const contact_click = (e) => {
 
 const contact_list_el = document.getElementById('dashboard-contact-list');
 
-const create_contact_el = (first_name, last_name, email, phone) => {
+const create_contact_el = (id, first_name, last_name, email, phone) => {
     const contact_li = document.createElement('li');
     contact_li.setAttribute('class', 'dashboard-contact-entry');
+    contact_li.setAttribute('data-id', id);
     contact_li.setAttribute('data-fname', first_name);
     contact_li.setAttribute('data-lname', last_name);
     contact_li.setAttribute('data-email', email);
@@ -76,7 +81,7 @@ const search_contacts = async (e) => {
         for (let i = 0; i < json.data.length; i++) {
             const c = json.data[i];
             console.log(c);
-            create_contact_el(c.FName, c.LName, c.Email, c.Phone);
+            create_contact_el(c.ID, c.FName, c.LName, c.Email, c.Phone);
         }
     } else {
         console.error(json.message || "Search error");
