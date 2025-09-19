@@ -5,11 +5,13 @@ const big_contact_email = document.getElementById('dashboard-email');
 const big_contact_phone = document.getElementById('dashboard-phone');
 
 let selected_contact_id = "";
+let selected_contact_el = null;
 
 const contact_click = (e) => {
     let target = e.target;
     while (target.getAttribute('class') !== "dashboard-contact-entry") target = target.parentNode;
-
+    selected_contact_el = target;
+    
     const id = target.getAttribute('data-id');
     const first_name = target.getAttribute('data-fname');
     const last_name = target.getAttribute('data-lname');

@@ -1,4 +1,5 @@
 const edit_btn_el = document.getElementById('dashboard-edit-contact-btn');
+const cancel_btn_el = document.getElementById('dashboard-cancel-contact-btn');
 const save_btn_el = document.getElementById('dashboard-save-contact-btn');
 const fname_input_el = document.getElementById('dashboard-fname-input-edit');
 const lname_input_el = document.getElementById('dashboard-lname-input-edit');
@@ -13,6 +14,15 @@ const toggle_edit_mode = (e) => {
 
     if (button === "menu-edit" && edit_mode) return toggle_menu();
     if (button === "menu-edit" && selected_contact_id === "") return toggle_menu();
+    
+    if (button === "logout") {
+        edit_mode = false;
+        fname_input_el.value = "";
+        lname_input_el.value = "";
+        email_input_el.value = "";
+        phone_input_el.value = "";
+        return;
+    }
 
     edit_mode = !edit_mode;
 
@@ -40,6 +50,16 @@ const toggle_edit_mode = (e) => {
 }
 
 edit_btn_el.addEventListener('click', toggle_edit_mode);
+
+const sync_contact_icon_letter = (e) => {
+    const value = e.target.value;
+    const icon_letter = value.length > 0 ? value[0] : "";
+
+    big_contact_icon_el.textContent = icon_letter;
+    // TODO: move this to save_contact // selected_contact_el.children[0].children[0].textContent = icon_letter;
+}
+
+fname_input_el.addEventListener('input', sync_contact_icon_letter);
 
 const save_contact = async () => {
 

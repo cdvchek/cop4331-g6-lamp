@@ -1,4 +1,4 @@
-const logout_callback = async () => {
+const logout_callback = async (e) => {
     const res = await fetch(base_url + "/API/logout.php", {
         method: "DELETE",
         headers: {"Content-Type": "application/json"},
@@ -11,6 +11,7 @@ const logout_callback = async () => {
         localStorage.removeItem("lastName");
 
         toggle_menu();
+        toggle_edit_mode(e);
 
         big_contact_icon_el.textContent = "";
         big_contact_fname.textContent = "-- -- --";
