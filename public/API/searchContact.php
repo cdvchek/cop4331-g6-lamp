@@ -57,15 +57,25 @@ if ($query === '') {
   returnWithInfo(200, []);
 }
 
-$sql = 'SELECT ID, FName, LName, Phone, Email 
-        FROM Contacts 
-        WHERE UserID = ? 
-        AND (FName LIKE ? OR LName LIKE ? OR Phone LIKE ? OR Email LIKE ?)
-        ORDER BY LName, FName';
+$tokens = preg_split('/\s+/', $query, -1, PREG_SPLIT_NO_EMPTY);
 
-$likeQuery = '%' . $query . '%';
-$types  = 'issss';
-$params = [$UserID, $likeQuery, $likeQuery, $likeQuery, $likeQuery];
+$whereParts = [];
+$params = [];
+$types  = 'i';
+$params[] = $UserID;
+
+foreach ($tokens as $tok) {
+  $like = '%' . $tok . '%';
+  $whereParts[] = '(FName LIKE ? OR LName LIKE ? OR Phone LIKE ? OR Email LIKE ?)';
+  array_push($params, $like, $like, $like, $like);
+  $types .= 'ssss';
+}
+
+$sql = 'SELECT ID, FName, LName, Phone, Email
+        FROM Contacts
+        WHERE UserID = ?
+          AND ' . implode(' AND ', $whereParts) . '
+        ORDER BY LName, FName';
 
 $stmt = $conn->prepare($sql);
 if (!$stmt) {
@@ -79,7 +89,7 @@ if (!$stmt->bind_param($types, ...$params)) {
 
 if (!$stmt->execute()) {
   $err = $stmt->error;
-  $stmt0->close();
+  $stmt->close();
   returnWithError(500, $err);
 }
 
