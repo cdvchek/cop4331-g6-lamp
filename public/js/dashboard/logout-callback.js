@@ -12,6 +12,8 @@ const logout_callback = async (e) => {
 
         toggle_menu();
         toggle_edit_mode(e);
+        selected_contact_el = null;
+        selected_contact_id = "";
 
         big_contact_icon_el.textContent = "";
         big_contact_fname.textContent = "-- -- --";
