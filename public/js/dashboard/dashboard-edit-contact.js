@@ -76,7 +76,12 @@ const sync_contact_icon_letter = (e) => {
 fname_input_el.addEventListener('input', sync_contact_icon_letter);
 
 const save_contact = async (e) => {
-    
+    // hit route to edit the contact
+    // on success
+        // toggle the edit mode
+        // change the big spans
+        // change the little icon
+        // change the little spans
     // TODO: make this fit in save_contact // selected_contact_el.children[0].children[0].textContent = icon_letter;
     toggle_edit_mode(e);
 }
