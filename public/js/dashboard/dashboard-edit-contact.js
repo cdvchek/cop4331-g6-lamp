@@ -23,6 +23,13 @@ const toggle_edit_mode = () => {
     lname_input_el.style.display = input_display;
     email_input_el.style.display = input_display;
     phone_input_el.style.display = input_display;
+
+    if (edit_mode) {
+        fname_input_el.value = big_contact_fname.textContent;
+        lname_input_el.value = big_contact_lname.textContent;
+        email_input_el.value = big_contact_email.textContent;
+        phone_input_el.value = big_contact_phone.textContent;
+    }
 }
 
 edit_btn_el.addEventListener('click', toggle_edit_mode);

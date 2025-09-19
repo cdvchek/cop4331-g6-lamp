@@ -68,3 +68,11 @@
 .dashboard-contact-info-span {
     font-size: 20px;
 }
+
+.dashboard-contact-edit {
+    display: none;
+    border: 1px rgb(216, 216, 216) solid;
+    border-radius: 20px;
+    height: 40px;
+    background-color: white;
+}
