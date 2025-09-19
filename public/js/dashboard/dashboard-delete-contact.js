@@ -1,6 +1,6 @@
 const delete_contact_btn = document.getElementById("dashboard-delete-contact-btn");
 
-const delete_contact = async () => {
+const delete_contact = async (e) => {
     if (selected_contact_id && confirm("Are you sure you want to delete this contact?")) {
         const payload = {
             ID: selected_contact_id,
@@ -15,6 +15,7 @@ const delete_contact = async () => {
 
         if (data.status == "success") {
             toggle_edit_mode(e);
+            toggle_menu();
 
             big_contact_icon_el.textContent = "";
             big_contact_fname.textContent = "";
