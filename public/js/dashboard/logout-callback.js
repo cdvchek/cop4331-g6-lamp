@@ -27,6 +27,12 @@ const logout_callback = async (e) => {
 
         search_input_el.value = "";
 
+        contact_selector_el.classList.add('mobile-page-active');
+        contact_selector_el.classList.remove('mobile-page-close');
+
+        contact_viewport_el.classList.add('mobile-page-close');
+        contact_viewport_el.classList.remove('mobile-page-active');
+
         return {
             ok: true,
         }
