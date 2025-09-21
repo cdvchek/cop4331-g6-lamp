@@ -135,16 +135,16 @@ body {
     }
 
     .dashboard-contact-info-div {
-        height: 60px;
+        height: 60px !important;
     }
 
     .dashboard-contact-info-icon {
-        margin-left: 15px;
-        margin-right: 15px;
-        width: 30px;
-        height: 30px;
+        margin-left: 15px !important;
+        margin-right: 15px !important;
+        width: 30px !important;
+        height: 30px !important;
     }
     .dashboard-contact-info-span {
-        font-size: 14px;
+        font-size: 14px !important;
     }
 }
