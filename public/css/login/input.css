@@ -23,6 +23,7 @@
     padding-left: 8px;
     height: 100%;
     flex: 1;
+    font-size: 16px;
 }
 
 .bad-form-input::placeholder {
