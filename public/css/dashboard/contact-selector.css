@@ -186,14 +186,6 @@
     overflow-y: scroll;
 }
 
-#dashboard-contact-list::-webkit-scrollbar-button {
-    display: none;
-}
-
-#dashboard-contact-list::-webkit-scrollbar-track {
-    background-color: rgba(189, 229, 255, 0.6);
-}
-
 #dashboard-contact-list.add-open {
     height: calc(100% - 350px);
 }
