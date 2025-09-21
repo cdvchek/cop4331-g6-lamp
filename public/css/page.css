@@ -92,7 +92,7 @@ body {
         background-image: none;
     }
 
-    #page-container {
+    #page-container.is-login {
         border-radius: 0;
         width: 100vw;
         height: 100vh;
