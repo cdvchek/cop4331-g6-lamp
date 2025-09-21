@@ -8,6 +8,10 @@
     width: calc(100% - 453px)
 }
 
+#dashboard-mobile-back-btn {
+    display: none;
+}
+
 #dashboard-image-name-div {
     height: 350px;
     display: flex;

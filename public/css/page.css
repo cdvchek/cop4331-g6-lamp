@@ -147,4 +147,14 @@ body {
     .dashboard-contact-info-span {
         font-size: 14px !important;
     }
+
+    #dashboard-mobile-back-btn {
+        display: block;
+        position: absolute;
+        top: 25px;
+        left: 38px;
+        background: none;
+        border: none;
+        color: rgb(17, 139, 180);
+    }
 }
