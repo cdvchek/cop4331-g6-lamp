@@ -108,11 +108,19 @@ body {
         height: 100% !important;
     }
 
+    .page-active > .mobile-page-active {
+        pointer-events: auto;
+    }
+
+    .page-close > .mobile-page-active {
+        pointer-events: none;
+    }
+
     .mobile-page-active {
         transition: opacity 0.4s ease 0.4s;
         opacity: 1;
         visibility: visible;
-        pointer-events: auto;
+        /* pointer-events: auto; */
     }
 
     .mobile-page-close {
