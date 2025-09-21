@@ -26,6 +26,7 @@ const logout_callback = async (e) => {
         }
 
         search_input_el.value = "";
+        empty_search_el.style.display = "block";
 
         contact_selector_el.classList.add('mobile-page-active');
         contact_selector_el.classList.remove('mobile-page-close');

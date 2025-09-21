@@ -89,12 +89,9 @@ const search_contacts = async (e) => {
     });
     const json = await res.json();
 
-    console.log("Response:", json);
-
     if (json.status === "success") {
         for (let i = 0; i < json.data.length; i++) {
             const c = json.data[i];
-            console.log(c);
             create_contact_el(c.ID, c.FName, c.LName, c.Email, c.Phone);
         }
     } else {
