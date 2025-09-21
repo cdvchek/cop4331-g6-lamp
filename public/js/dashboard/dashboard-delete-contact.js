@@ -29,6 +29,8 @@ const delete_contact = async (e) => {
         } else {
             console.warn(data.status, data.message);
         }
+    } else {
+        toggle_menu();
     }
 }
 
