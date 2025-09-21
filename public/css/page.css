@@ -107,4 +107,18 @@ body {
         width: 100% !important;
         height: 100% !important;
     }
+
+    .mobile-page-active {
+        transition: opacity 0.4s ease 0.4s;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .mobile-page-close {
+        transition: opacity 0.4s ease, visibility 0s 0.4s;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
 }

@@ -4,10 +4,22 @@ const big_contact_lname = document.getElementById('dashboard-last-name');
 const big_contact_email = document.getElementById('dashboard-email');
 const big_contact_phone = document.getElementById('dashboard-phone');
 
+const contact_selector_el = document.getElementById('dashboard-contact-selector');
+const contact_viewport_el = document.getElementById('dashboard-contact-viewport');
+
+contact_selector_el.classList.add('mobile-page-active');
+contact_viewport_el.classList.add('mobile-page-close');
+
 let selected_contact_id = "";
 let selected_contact_el = null;
 
 const contact_click = (e) => {
+    contact_selector_el.classList.add('mobile-page-close');
+    contact_selector_el.classList.remove('mobile-page-active');
+
+    contact_viewport_el.classList.add('mobile-page-active');
+    contact_viewport_el.classList.remove('mobile-page-close');
+
     let target = e.target;
     while (target.getAttribute('class') !== "dashboard-contact-entry") target = target.parentNode;
     selected_contact_el = target;
