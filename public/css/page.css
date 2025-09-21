@@ -86,3 +86,15 @@ body {
         transition: none !important;
     }
 }
+
+@media (max-width: 1200px), (max-height: 700px) {
+    body {
+        background-image: none;
+    }
+
+    #page-container {
+        border-radius: 0;
+        width: 100vw;
+        height: 100vh;
+    }
+}
