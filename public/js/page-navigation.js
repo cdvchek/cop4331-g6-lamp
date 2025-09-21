@@ -26,6 +26,8 @@ const page_cfg = {
 
 const adjust_height = () => {
     const height = page_container_el.scrollHeight;
+    console.log("Height:", height);
+    
     if (height > 675) page_container_el.style.height = "675px";
 }
 
