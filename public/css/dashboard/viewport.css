@@ -115,10 +115,10 @@
 }
 
 #dashboard-cancel-btn {
-    background-color: rgb(17, 139, 180);
+    background-color: rgb(193, 68, 68);
     margin-right: 20px;
 }
 
 #dashboard-save-btn {
-    background-color: rgb(193, 68, 68);
+    background-color: rgb(17, 139, 180);
 }
