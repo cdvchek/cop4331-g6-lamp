@@ -1,0 +1,6 @@
+# .htaccess (at the web root)
+RewriteEngine On
+# If coming in over plain HTTP at Heroku's router, redirect to HTTPS
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+Header set Content-Security-Policy "upgrade-insecure-requests"
