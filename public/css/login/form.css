@@ -53,3 +53,8 @@
     cursor: pointer;
     color: rgb(0, 0, 190);
 }
+
+.form-error-msg {
+    margin-top: 20px;
+    color: rgb(126, 0, 0);
+}
