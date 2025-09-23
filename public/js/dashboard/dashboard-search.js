@@ -10,6 +10,9 @@ const contact_viewport_el = document.getElementById('dashboard-contact-viewport'
 contact_selector_el.classList.add('mobile-page-active');
 contact_viewport_el.classList.add('mobile-page-close');
 
+let debouncing = false;
+let debounce_timer = null;
+
 let selected_contact_id = "";
 let selected_contact_el = null;
 
@@ -70,10 +73,19 @@ const create_contact_el = (id, first_name, last_name, email, phone) => {
 const search_input_el = document.getElementById('dashboard-search-input');
 const empty_search_el = document.getElementById('dashboard-search-text');
 
-const search_contacts = async (e) => {    
-    const query = e.target.value.trim();
-    console.log("Query:", query);
-    
+const search_contacts = async (e) => {
+    if (debouncing) return;
+
+    if (!e.end_debounce) {
+        debouncing = true;
+        e.end_debounce = true;
+        setTimeout(() => {
+            debouncing = false;
+            search_contacts(e);
+        }, 300);
+    }
+
+    const query = e.target.value.trim();    
     
     for (let i = contact_list_el.children.length - 1; i >= 0; i--) {
         contact_list_el.children[i].remove();
