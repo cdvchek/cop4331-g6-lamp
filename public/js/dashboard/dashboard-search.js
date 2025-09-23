@@ -79,7 +79,6 @@ function clearContactList() {
 }
 
 async function runSearch(query) {
-    // UI state
     empty_search_el.style.display = (query.length === 0) ? 'block' : 'none';
     clearContactList();
     if (query.length === 0) return;
@@ -107,15 +106,13 @@ async function runSearch(query) {
 function onSearchInput(e) {
     const value = e.target.value.trim();
 
-    // immediate empty state response
     if (value.length === 0) {
         empty_search_el.style.display = 'block';
         clearContactList();
     }
 
-    // reset debounce timer
     if (debounceTimer) clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => runSearch(value), 250); // 200–300ms is typical
+    debounceTimer = setTimeout(() => runSearch(value), 250);
 }
 
 search_input_el.addEventListener('input', onSearchInput);
