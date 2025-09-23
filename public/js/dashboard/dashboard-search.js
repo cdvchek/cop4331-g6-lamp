@@ -10,9 +10,6 @@ const contact_viewport_el = document.getElementById('dashboard-contact-viewport'
 contact_selector_el.classList.add('mobile-page-active');
 contact_viewport_el.classList.add('mobile-page-close');
 
-let debouncing = false;
-let debounce_timer = null;
-
 let selected_contact_id = "";
 let selected_contact_el = null;
 
@@ -73,42 +70,52 @@ const create_contact_el = (id, first_name, last_name, email, phone) => {
 const search_input_el = document.getElementById('dashboard-search-input');
 const empty_search_el = document.getElementById('dashboard-search-text');
 
-const search_contacts = async (e) => {
-    if (debouncing) return;
+let debounceTimer = null;
 
-    if (!e.end_debounce) {
-        debouncing = true;
-        e.end_debounce = true;
-        setTimeout(() => {
-            debouncing = false;
-            search_contacts(e);
-        }, 300);
-    }
-
-    const query = e.target.value.trim();    
-    
+function clearContactList() {
     for (let i = contact_list_el.children.length - 1; i >= 0; i--) {
         contact_list_el.children[i].remove();
     }
-    
-    empty_search_el.style.display = (query.length <= 0) ? 'block' : 'none';
-    if (query.length === 0) return;
-    
-    const res = await fetch(`${base_url}/API/searchContact.php`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ UserID: get_user_id(), query: query.toLowerCase() })
-    });
-    const json = await res.json();
+}
 
-    if (json.status === "success") {
-        for (let i = 0; i < json.data.length; i++) {
-            const c = json.data[i];
-            create_contact_el(c.ID, c.FName, c.LName, c.Email, c.Phone);
+async function runSearch(query) {
+    // UI state
+    empty_search_el.style.display = (query.length === 0) ? 'block' : 'none';
+    clearContactList();
+    if (query.length === 0) return;
+
+    try {
+        const res = await fetch(`${base_url}/API/searchContact.php`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ UserID: get_user_id(), query: query.toLowerCase() })
+        });
+        const json = await res.json();
+
+        if (json.status === "success" && Array.isArray(json.data)) {
+            for (const c of json.data) {
+                create_contact_el(c.ID, c.FName, c.LName, c.Email, c.Phone);
+            }
+        } else {
+            console.error(json.message || "Search error");
         }
-    } else {
-        console.error(json.message || "Search error");
+    } catch (err) {
+        console.error(err);
     }
 }
 
-search_input_el.addEventListener('input', search_contacts);
+function onSearchInput(e) {
+    const value = e.target.value.trim();
+
+    // immediate empty state response
+    if (value.length === 0) {
+        empty_search_el.style.display = 'block';
+        clearContactList();
+    }
+
+    // reset debounce timer
+    if (debounceTimer) clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => runSearch(value), 250); // 200–300ms is typical
+}
+
+search_input_el.addEventListener('input', onSearchInput);
